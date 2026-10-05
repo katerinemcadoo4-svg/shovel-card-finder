@@ -525,6 +525,21 @@ function renderQuizStats() {
     : '答题胜率 = 本套答对题数 ÷ 已答题数';
 }
 
+function renderHomeHero(hero) {
+  const emblem = $('quiz-home-hero');
+  replaceChildren(emblem);
+  const url = hero ? imageUrlFor(hero.id) : null;
+  emblem.hidden = !url;
+  if (!url) return;
+  const image = document.createElement('img');
+  image.alt = `${hero.name}头像`;
+  image.addEventListener('error', () => {
+    if (image.parentNode === emblem) emblem.hidden = true;
+  });
+  image.src = url;
+  emblem.append(image);
+}
+
 function renderQuizReady() {
   state.quizPhase = 'ready';
   state.quizQuestions = [];
@@ -538,8 +553,10 @@ function renderQuizReady() {
   $('quiz-play').hidden = true;
   $('quiz-complete').hidden = true;
   $('quiz-review').hidden = true;
-  const heroIds = new Set((state.catalog?.heroes || []).map(hero => hero.id));
-  const count = new Set(state.references.filter(reference => heroIds.has(reference.heroId) && reference.blob?.size > 0).map(reference => reference.heroId)).size;
+  const picturedIds = new Set(state.references.filter(reference => reference.blob?.size > 0).map(reference => reference.heroId));
+  const picturedHeroes = (state.catalog?.heroes || []).filter(hero => picturedIds.has(hero.id));
+  const count = picturedHeroes.length;
+  renderHomeHero(picturedHeroes[Math.floor(Math.random() * count)]);
   const ready = count >= 2;
   $('start-quiz').disabled = !ready;
   $('quiz-import').hidden = ready;
@@ -685,6 +702,7 @@ async function refreshLineups(catalog) {
 }
 
 async function refreshCatalog() {
+  renderHomeHero(null);
   clearArtUrls();
   state.catalog = await loadCatalog();
   state.pack = await getAssetPackState();

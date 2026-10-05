@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { validateLineupCatalog } from '../src/lineups.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const output = resolve(root, 'dist');
@@ -12,7 +13,7 @@ if (output !== join(root, 'dist') || !output.startsWith(root + sep)) {
 const sources = [
   'index.html', 'app.mjs', 'styles.css',
   'manifest.webmanifest', 'version.json', 'sw.js', 'data/season.json',
-  'src/catalog.mjs', 'src/zip.mjs', 'src/quiz.mjs',
+  'src/catalog.mjs', 'src/zip.mjs', 'src/quiz.mjs', 'src/lineups.mjs', 'data/lineups.json',
   'assets/icon.svg', 'assets/icon-192.png', 'assets/icon-512.png',
   'assets/apple-touch-icon.png',
 ];
@@ -26,9 +27,10 @@ for (const source of sources) {
 }
 
 const catalog = JSON.parse(await readFile(join(root, 'data/season.json'), 'utf8'));
+const lineups = validateLineupCatalog(JSON.parse(await readFile(join(root, 'data/lineups.json'), 'utf8')), { catalog });
 const version = JSON.parse(await readFile(join(root, 'version.json'), 'utf8'));
 version.contentVersion = catalog.patch;
-version.updatedAt = catalog.updatedAt;
+version.updatedAt = [catalog.updatedAt, lineups.updatedAt].sort().at(-1);
 await writeFile(join(output, 'version.json'), JSON.stringify(version, null, 2) + '\n');
 
 const hashedFiles = sources.filter(path => path !== 'sw.js').sort();

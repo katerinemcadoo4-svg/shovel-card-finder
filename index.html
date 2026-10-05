@@ -36,7 +36,7 @@
           <div class="page-heading">
             <p class="eyebrow">角色练习</p>
             <h1 id="quiz-title">看图，选出这张牌</h1>
-            <p class="heading-copy">每套 20 道选择题。选完立即看对错，每答对一题得 5 分。</p>
+            <p class="heading-copy">每套 20 题，每题 5 分。答对自动进入下一题，答错后查看答案再继续。</p>
           </div>
 
           <div class="quiz-ready info-card" id="quiz-ready">
@@ -47,6 +47,7 @@
             <button type="button" class="primary-button" id="start-quiz" disabled>开始答题</button>
             <p class="micro-copy" id="quiz-ready-note" role="status">正在准备角色资料…</p>
             <button type="button" class="secondary-button" id="quiz-import" hidden>去导入角色素材</button>
+            <button type="button" class="text-link" id="quiz-lineups">看看热门阵容 →</button>
           </div>
           <section class="quiz-play" id="quiz-play" hidden aria-labelledby="question-title">
             <div class="quiz-progress-heading"><h2 id="question-title" tabindex="-1">第 1 / 20 题</h2><span id="quiz-live-score">已得 0 分</span></div>
@@ -56,6 +57,11 @@
             <div class="quiz-options" id="quiz-options" role="group" aria-label="选择角色名字"></div>
             <div class="quiz-feedback" id="quiz-feedback" hidden role="status" aria-live="polite"></div>
             <button type="button" class="primary-button quiz-next" id="next-question" hidden>下一题</button>
+            <div class="quiz-rate" aria-label="本套答题胜率">
+              <div class="quiz-rate-heading"><span>答题胜率</span><strong id="quiz-win-rate">0%</strong></div>
+              <p id="quiz-win-count">答对 0 / 已答 0 题</p>
+              <p class="micro-copy" id="quiz-last-answer" role="status" aria-live="polite">答题胜率 = 本套答对题数 ÷ 已答题数</p>
+            </div>
             <p class="quiz-image-error" id="quiz-image-error" hidden role="alert">这张素材无法显示。请到“资料”重新导入完整素材包。</p>
           </section>
           <section class="quiz-complete info-card" id="quiz-complete" hidden aria-labelledby="quiz-complete-title">
@@ -92,6 +98,26 @@
           <section class="detail-panel" id="atlas-detail" hidden aria-labelledby="atlas-detail-title"></section>
         </section>
 
+        <section class="view" id="lineups-view" hidden aria-labelledby="lineups-title">
+          <div class="page-heading">
+            <p class="eyebrow">阵容攻略</p>
+            <h1 id="lineups-title">热门阵容推荐</h1>
+            <p class="heading-copy">官方 S / A 级精选，查看阵容成员、推荐装备和运营建议。按官方等级排序。</p>
+            <p class="micro-copy" id="lineup-version"></p>
+          </div>
+          <label class="search-field" for="lineup-search">
+            <span aria-hidden="true">⌕</span>
+            <input id="lineup-search" type="search" aria-label="搜索阵容、角色或羁绊" placeholder="搜索阵容、角色或羁绊" autocomplete="off" />
+          </label>
+          <div class="lineup-filters" id="lineup-filters" role="group" aria-label="按官方推荐等级筛选">
+            <button type="button" class="cost-filter" data-quality="S" aria-pressed="true">S 级推荐</button>
+            <button type="button" class="cost-filter" data-quality="A" aria-pressed="false">A 级推荐</button>
+            <button type="button" class="cost-filter" data-quality="all" aria-pressed="false">全部</button>
+          </div>
+          <p class="atlas-meta" id="lineup-meta" role="status" aria-live="polite">正在准备阵容资料…</p>
+          <div class="lineup-list" id="lineup-list"></div>
+        </section>
+
         <section class="view" id="library-view" hidden aria-labelledby="library-title">
           <div class="page-heading">
             <p class="eyebrow">资料管理</p>
@@ -126,6 +152,7 @@
       <nav class="bottom-nav" aria-label="主导航">
         <button type="button" class="nav-item nav-active" data-view="quiz-view" aria-current="page"><span aria-hidden="true">?</span><span>答题</span></button>
         <button type="button" class="nav-item" data-view="atlas-view"><span aria-hidden="true">▦</span><span>图鉴</span></button>
+        <button type="button" class="nav-item" data-view="lineups-view"><span aria-hidden="true">♜</span><span>阵容</span></button>
         <button type="button" class="nav-item" data-view="library-view"><span aria-hidden="true">☰</span><span>资料</span></button>
       </nav>
     </div>

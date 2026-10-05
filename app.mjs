@@ -6,6 +6,7 @@ import {
   loadCatalog,
 } from './src/catalog.mjs';
 import { createQuiz, scoreQuiz } from './src/quiz.mjs';
+import { loadLineups } from './src/lineups.mjs';
 
 const $ = id => document.getElementById(id);
 const state = {
@@ -15,6 +16,9 @@ const state = {
   pack: null,
   busy: false,
   atlasCost: null,
+  lineupCatalog: null,
+  lineupStatus: 'loading',
+  lineupQuality: 'S',
   quizPhase: 'ready',
   quizQuestions: [],
   quizAnswers: [],
@@ -216,6 +220,88 @@ function renderAtlas() {
   replaceChildren(list, ...groups);
 }
 
+function renderLineups() {
+  const data = state.lineupCatalog;
+  const list = $('lineup-list');
+  if (!data) {
+    const loading = state.lineupStatus === 'loading';
+    $('lineup-meta').textContent = loading ? '正在准备阵容资料…' : '阵容资料暂不可用';
+    $('lineup-version').textContent = '';
+    replaceChildren(list, node('p', 'empty-note', loading ? '正在读取官方阵容资料…' : '未能读取与当前赛季版本一致的阵容资料，请联网更新后重试。'));
+    return;
+  }
+  const search = $('lineup-search').value.trim().toLowerCase();
+  const filtered = data.lineups.filter(lineup => {
+    const names = [lineup.name, ...lineup.members.flatMap(member => [member.name, ...(heroById(member.heroId)?.traits || [])])].join(' ').toLowerCase();
+    return (state.lineupQuality === null || lineup.quality === state.lineupQuality) && names.includes(search);
+  });
+  $('lineup-version').textContent = `${data.seasonName} · ${data.patch} · 核验于 ${data.updatedAt}`;
+  $('lineup-meta').textContent = `${state.lineupQuality ? `官方 ${state.lineupQuality} 级` : '全部推荐'} · ${filtered.length} 套阵容`;
+  if (!filtered.length) {
+    replaceChildren(list, node('p', 'empty-note', '没有找到符合条件的阵容，试试其他角色或羁绊。'));
+    return;
+  }
+  replaceChildren(list, ...filtered.map((lineup, index) => {
+    const card = node('details', 'lineup-card');
+    card.open = index === 0;
+    const summary = node('summary', 'lineup-summary');
+    const title = node('span', 'lineup-title');
+    title.append(node('span', 'lineup-grade', lineup.quality), node('strong', '', lineup.name));
+    summary.append(title, node('span', 'lineup-summary-meta', `${lineup.members.length} 名成员 · ${data.patch}`));
+    const body = node('div', 'lineup-body');
+    body.append(node('h2', 'lineup-section-title', '阵容成员'));
+    const members = node('div', 'lineup-members');
+    for (const member of lineup.members) {
+      const hero = heroById(member.heroId);
+      const tile = node(hero ? 'button' : 'div', `lineup-member${member.isCarry ? ' lineup-carry' : ''}`);
+      if (hero) {
+        tile.type = 'button';
+        tile.setAttribute('aria-label', `查看${member.name}的角色详情`);
+        tile.append(thumb(hero, 'lineup-portrait'));
+        tile.addEventListener('click', () => { navigate('atlas-view'); renderDetail(hero, 'atlas-detail'); });
+      } else tile.append(node('span', 'lineup-portrait', '✦'));
+      tile.append(node('span', 'lineup-member-name', member.name));
+      const label = member.kind === 'pet' ? '召唤单位' : `${member.cost} 费${member.isCarry ? ' · 主 C' : ''}`;
+      tile.append(node('span', 'lineup-member-meta', label));
+      members.append(tile);
+    }
+    body.append(members);
+    const builds = node('div', 'lineup-builds');
+    for (const member of lineup.members.filter(member => member.items.length)) {
+      const build = node('div', 'lineup-build');
+      build.append(node('strong', '', member.name));
+      const items = node('div', 'lineup-item-tags');
+      for (const item of member.items) items.append(node('span', '', item.name));
+      build.append(items);
+      builds.append(build);
+    }
+    if (builds.childElementCount) body.append(node('h2', 'lineup-section-title', '推荐装备'), builds);
+    const guide = node('details', 'lineup-guide');
+    guide.append(node('summary', '', '查看运营与站位建议'));
+    const guideLabels = { early: '前期过渡', reroll: '搜牌节奏', position: '站位建议', equipment: '装备分析', augments: '强化符文', matchups: '克制与应对', adventure: '奇遇建议' };
+    for (const [key, label] of Object.entries(guideLabels)) {
+      if (!lineup.guide[key]) continue;
+      const section = node('section');
+      section.append(node('h3', '', label), node('p', '', lineup.guide[key]));
+      guide.append(section);
+    }
+    if (guide.childElementCount > 1) body.append(guide);
+    const attribution = node('p', 'lineup-attribution', `${lineup.author ? `作者：${lineup.author} · ` : ''}官方阵容 #${lineup.officialId}`);
+    body.append(attribution);
+    const source = data.sources.find(source => source.id === 'lineups');
+    const url = safeHttpUrl(source?.url);
+    if (url) {
+      const link = node('a', 'lineup-source', '查看官方资料出处 ↗');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      body.append(link);
+    }
+    card.append(summary, body);
+    return card;
+  }));
+}
+
 function infoPair(label, value) {
   const row = node('div');
   row.append(node('span', '', label), node('strong', '', value));
@@ -259,12 +345,24 @@ function quizCorrectCount() {
   return state.quizAnswers.filter(answer => answer.correct).length;
 }
 
+function renderQuizStats() {
+  const answered = state.quizAnswers.length;
+  const correct = quizCorrectCount();
+  $('quiz-win-rate').textContent = `${answered ? Math.round(correct / answered * 100) : 0}%`;
+  $('quiz-win-count').textContent = `答对 ${correct} / 已答 ${answered} 题`;
+  const last = state.quizAnswers.at(-1);
+  $('quiz-last-answer').textContent = last
+    ? last.correct ? '上一题答对，获得 5 分。' : '本题答错，记住正确答案再继续。'
+    : '答题胜率 = 本套答对题数 ÷ 已答题数';
+}
+
 function renderQuizReady() {
   state.quizPhase = 'ready';
   state.quizQuestions = [];
   state.quizAnswers = [];
   state.quizIndex = 0;
   state.quizAnswer = null;
+  renderQuizStats();
   clearQuizImage();
   $('quiz-ready').hidden = false;
   $('quiz-play').hidden = true;
@@ -306,6 +404,7 @@ function renderQuestion() {
   $('question-title').textContent = `第 ${state.quizIndex + 1} / 20 题`;
   $('quiz-live-score').textContent = `已得 ${scoreQuiz(quizCorrectCount()).score} 分`;
   $('quiz-progress').value = state.quizAnswers.length;
+  renderQuizStats();
   $('quiz-feedback').hidden = true;
   $('quiz-feedback').textContent = '';
   $('next-question').hidden = true;
@@ -318,7 +417,7 @@ function renderQuestion() {
     button.dataset.heroId = option.heroId;
     button.disabled = true;
     button.append(node('span', 'option-letter', String.fromCharCode(65 + i)), node('span', 'option-name', option.name), node('span', 'option-mark'));
-    button.addEventListener('click', () => answerQuestion(option.heroId));
+    button.addEventListener('click', () => answerQuestion(option.heroId, question));
     return button;
   }));
   state.quizImageUrl = URL.createObjectURL(question.reference.blob);
@@ -327,26 +426,32 @@ function renderQuestion() {
   $('question-title').focus({ preventScroll: true });
 }
 
-function answerQuestion(selectedHeroId) {
+function answerQuestion(selectedHeroId, displayedQuestion) {
   if (state.quizPhase !== 'playing' || state.quizAnswer !== null || !state.quizImageReady) return;
   const question = state.quizQuestions[state.quizIndex];
+  if (displayedQuestion !== question) return;
   const correct = selectedHeroId === question.heroId;
   state.quizAnswer = selectedHeroId;
   state.quizAnswers.push({ heroId: question.heroId, selectedHeroId, correct });
+  renderQuizStats();
+  if (correct) {
+    advanceQuestion();
+    return;
+  }
   for (const button of $('quiz-options').children) {
     button.disabled = true;
     const mark = button.querySelector('.option-mark');
     if (button.dataset.heroId === question.heroId) {
       button.classList.add('is-correct');
-      mark.textContent = correct ? '✓ 正确' : '✓ 正确答案';
+      mark.textContent = '✓ 正确答案';
     } else if (button.dataset.heroId === selectedHeroId) {
       button.classList.add('is-wrong');
       mark.textContent = '✕ 你选的';
     }
   }
   const name = heroById(question.heroId)?.name || '该角色';
-  $('quiz-feedback').className = `quiz-feedback ${correct ? 'feedback-correct' : 'feedback-wrong'}`;
-  $('quiz-feedback').textContent = correct ? `答对了！这是${name}，获得 5 分。` : `答错了，正确答案是${name}。`;
+  $('quiz-feedback').className = 'quiz-feedback feedback-wrong';
+  $('quiz-feedback').textContent = `答错了，正确答案是${name}。`;
   $('quiz-feedback').hidden = false;
   $('quiz-live-score').textContent = `已得 ${scoreQuiz(quizCorrectCount()).score} 分`;
   $('quiz-progress').value = state.quizAnswers.length;
@@ -356,6 +461,12 @@ function answerQuestion(selectedHeroId) {
   $('next-question').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
+function advanceQuestion() {
+  if (state.quizAnswer === null || state.quizPhase !== 'playing') return;
+  if (state.quizIndex === state.quizQuestions.length - 1) showQuizResult();
+  else { state.quizIndex++; renderQuestion(); }
+}
+
 function showQuizResult() {
   clearQuizImage();
   state.quizPhase = 'complete';
@@ -363,7 +474,7 @@ function showQuizResult() {
   $('quiz-complete').hidden = false;
   const result = scoreQuiz(quizCorrectCount());
   $('quiz-final-score').textContent = result.score;
-  $('quiz-score-summary').textContent = `答对 ${result.correctCount} / 20 题 · 正确率 ${result.correctCount * 5}% · 答错 ${20 - result.correctCount} 题`;
+  $('quiz-score-summary').textContent = `答对 ${result.correctCount} / 20 题 · 答题胜率 ${result.correctCount * 5}% · 答错 ${20 - result.correctCount} 题`;
   const wrong = state.quizAnswers.filter(answer => !answer.correct);
   $('quiz-review').hidden = !wrong.length;
   replaceChildren($('quiz-wrong-list'), ...wrong.map(answer => {
@@ -380,6 +491,23 @@ function showQuizResult() {
   $('quiz-complete-title').focus({ preventScroll: true });
 }
 
+async function refreshLineups(catalog) {
+  state.lineupCatalog = null;
+  state.lineupStatus = 'loading';
+  renderLineups();
+  try {
+    const lineups = await loadLineups(catalog);
+    if (state.catalog !== catalog) return;
+    state.lineupCatalog = lineups;
+    state.lineupStatus = 'ready';
+  } catch (error) {
+    if (state.catalog !== catalog) return;
+    state.lineupStatus = 'failed';
+    console.warn('Lineups unavailable', error);
+  }
+  renderLineups();
+}
+
 async function refreshCatalog() {
   clearArtUrls();
   state.catalog = await loadCatalog();
@@ -389,6 +517,8 @@ async function refreshCatalog() {
   renderAtlas();
   $('atlas-detail').hidden = true;
   renderQuizReady();
+  // The independent guide download must never delay quiz or asset-pack setup.
+  void refreshLineups(state.catalog);
 }
 
 async function onPackSelected(event) {
@@ -474,11 +604,16 @@ async function init() {
   $('restart-quiz').addEventListener('click', startQuiz);
   $('quiz-import').addEventListener('click', () => navigate('library-view'));
   $('quiz-atlas').addEventListener('click', () => navigate('atlas-view'));
-  $('next-question').addEventListener('click', () => {
-    if (state.quizAnswer === null || state.quizPhase !== 'playing') return;
-    if (state.quizIndex === 19) showQuizResult();
-    else { state.quizIndex++; renderQuestion(); }
+  $('quiz-lineups').addEventListener('click', () => navigate('lineups-view'));
+  $('lineup-search').addEventListener('input', renderLineups);
+  $('lineup-filters').addEventListener('click', event => {
+    const button = event.target.closest('button[data-quality]');
+    if (!button) return;
+    state.lineupQuality = button.dataset.quality === 'all' ? null : button.dataset.quality;
+    $('lineup-filters').querySelectorAll('button').forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
+    renderLineups();
   });
+  $('next-question').addEventListener('click', advanceQuestion);
   $('quiz-image').addEventListener('load', () => {
     if (state.quizPhase !== 'playing' || !$('quiz-image').naturalWidth) return;
     state.quizImageReady = true;
@@ -515,6 +650,8 @@ async function init() {
     $('quiz-ready-note').textContent = '资料读取失败。请检查网络或到“资料”重新导入素材包。';
     $('quiz-import').hidden = false;
     $('atlas-meta').textContent = '资料读取失败';
+    state.lineupStatus = 'failed';
+    renderLineups();
   }
   await registerUpdates();
 }

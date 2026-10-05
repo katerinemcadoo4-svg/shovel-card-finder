@@ -1,9 +1,9 @@
-const APP_VERSION = '0.3.0';
+const APP_VERSION = '0.3.1';
 const CACHE_NAME = `shovel-card-${APP_VERSION}`;
 const CORE = [
   './', './index.html', './app.mjs', './styles.css',
   './manifest.webmanifest', './version.json', './data/season.json',
-  './src/catalog.mjs', './src/zip.mjs', './src/quiz.mjs', './src/lineups.mjs', './data/lineups.json',
+  './src/catalog.mjs', './src/zip.mjs', './src/quiz.mjs', './src/lineups.mjs', './src/formation.mjs', './data/lineups.json',
   './assets/icon.svg', './assets/icon-192.png',
   './assets/icon-512.png', './assets/apple-touch-icon.png'
 ];

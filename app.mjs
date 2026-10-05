@@ -7,6 +7,7 @@ import {
 } from './src/catalog.mjs';
 import { createQuiz, scoreQuiz } from './src/quiz.mjs';
 import { loadLineups } from './src/lineups.mjs';
+import { layoutFormation } from './src/formation.mjs';
 
 const $ = id => document.getElementById(id);
 const state = {
@@ -220,6 +221,54 @@ function renderAtlas() {
   replaceChildren(list, ...groups);
 }
 
+function renderFormation(lineup) {
+  const figure = node('figure', 'formation');
+  figure.append(node('div', 'formation-edge', '前排 · 靠近敌方'));
+  const board = node('div', 'formation-board');
+  board.setAttribute('role', 'list');
+  board.setAttribute('aria-label', '4 排 7 列棋盘，第一排在上方');
+  const { cells, unplaced } = layoutFormation(lineup.members);
+  for (const { row, column, members } of cells) {
+    const cell = node('div', `formation-cell${members.length ? ' formation-occupied' : ''}`);
+    cell.dataset.row = row;
+    cell.dataset.column = column;
+    // Seven columns with alternating half-cell offsets, front row at the top.
+    cell.style.left = `${((column - 1) + (row % 2 === 0 ? .5 : 0)) / 7.5 * 100}%`;
+    cell.style.top = `${(row - 1) * .88 / 3.64 * 100}%`;
+    const member = members[0];
+    if (!member) {
+      cell.setAttribute('aria-hidden', 'true');
+      board.append(cell);
+      continue;
+    }
+    cell.setAttribute('role', 'listitem');
+    cell.classList.add(`formation-cost-${member.cost}`);
+    if (member.isCarry) cell.classList.add('formation-carry');
+    const identity = `${member.name} · ${member.kind === 'pet' ? '召唤单位' : `${member.cost} 费`}${member.isCarry ? ' · 主 C' : ''}`;
+    const equipment = member.items.length ? ` · 装备：${member.items.map(item => item.name).join('、')}` : '';
+    cell.setAttribute('aria-label', `第 ${row} 排第 ${column} 列：${identity}${equipment}`);
+    cell.title = `${identity}${equipment}`;
+    const hero = heroById(member.heroId) || state.catalog.heroes.find(hero => hero.name === member.name);
+    const art = hero ? thumb(hero, 'formation-art') : node('span', 'formation-art formation-placeholder', member.name.slice(0, 1));
+    art.setAttribute('aria-hidden', 'true');
+    cell.append(art, node('span', 'formation-name', member.name));
+    cell.append(node('span', 'formation-cost', member.kind === 'pet' ? '召' : member.cost));
+    if (member.isCarry) cell.append(node('span', 'formation-carry-mark', 'C'));
+    // Keep any future shared-slot units visible instead of silently dropping them.
+    if (members.length > 1) {
+      cell.append(node('span', 'formation-stack', `+${members.length - 1}`));
+      cell.setAttribute('aria-label', `第 ${row} 排第 ${column} 列：${members.map(unit => unit.name).join('、')}`);
+      cell.title = members.map(unit => unit.name).join('、');
+    }
+    board.append(cell);
+  }
+  figure.append(board);
+  const carry = lineup.members.find(member => member.isCarry);
+  figure.append(node('figcaption', 'formation-caption', `后排${carry ? ` · 主 C：${carry.name}` : ''}`));
+  if (unplaced.length) figure.append(node('p', 'micro-copy', `未提供站位：${unplaced.map(member => member.name).join('、')}`));
+  return figure;
+}
+
 function renderLineups() {
   const data = state.lineupCatalog;
   const list = $('lineup-list');
@@ -249,23 +298,7 @@ function renderLineups() {
     title.append(node('span', 'lineup-grade', lineup.quality), node('strong', '', lineup.name));
     summary.append(title, node('span', 'lineup-summary-meta', `${lineup.members.length} 名成员 · ${data.patch}`));
     const body = node('div', 'lineup-body');
-    body.append(node('h2', 'lineup-section-title', '阵容成员'));
-    const members = node('div', 'lineup-members');
-    for (const member of lineup.members) {
-      const hero = heroById(member.heroId);
-      const tile = node(hero ? 'button' : 'div', `lineup-member${member.isCarry ? ' lineup-carry' : ''}`);
-      if (hero) {
-        tile.type = 'button';
-        tile.setAttribute('aria-label', `查看${member.name}的角色详情`);
-        tile.append(thumb(hero, 'lineup-portrait'));
-        tile.addEventListener('click', () => { navigate('atlas-view'); renderDetail(hero, 'atlas-detail'); });
-      } else tile.append(node('span', 'lineup-portrait', '✦'));
-      tile.append(node('span', 'lineup-member-name', member.name));
-      const label = member.kind === 'pet' ? '召唤单位' : `${member.cost} 费${member.isCarry ? ' · 主 C' : ''}`;
-      tile.append(node('span', 'lineup-member-meta', label));
-      members.append(tile);
-    }
-    body.append(members);
+    body.append(node('h2', 'lineup-section-title', '棋盘站位'), renderFormation(lineup));
     const builds = node('div', 'lineup-builds');
     for (const member of lineup.members.filter(member => member.items.length)) {
       const build = node('div', 'lineup-build');

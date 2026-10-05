@@ -13,7 +13,7 @@ if (output !== join(root, 'dist') || !output.startsWith(root + sep)) {
 const sources = [
   'index.html', 'app.mjs', 'styles.css',
   'manifest.webmanifest', 'version.json', 'sw.js', 'data/season.json',
-  'src/catalog.mjs', 'src/zip.mjs', 'src/quiz.mjs', 'src/lineups.mjs', 'data/lineups.json',
+  'src/catalog.mjs', 'src/zip.mjs', 'src/quiz.mjs', 'src/lineups.mjs', 'src/formation.mjs', 'data/lineups.json',
   'assets/icon.svg', 'assets/icon-192.png', 'assets/icon-512.png',
   'assets/apple-touch-icon.png',
 ];

@@ -1,0 +1,4144 @@
+{
+  "schemaVersion": 1,
+  "seasonId": "s19",
+  "seasonName": "自然之力",
+  "patch": "18.18.3",
+  "updatedAt": "2026-10-04",
+  "status": "verified",
+  "sources": [
+    {
+      "id": "current-season",
+      "title": "金铲铲之战官方当前赛季配置",
+      "url": "https://jcc.qq.com/data-js/basicConfig.js",
+      "checkedAt": "2026-10-04"
+    },
+    {
+      "id": "version",
+      "title": "金铲铲之战官方版本清单",
+      "url": "https://game.gtimg.cn/images/lol/act/jkzlk/js/config/versiondataconfig.js",
+      "checkedAt": "2026-10-04"
+    },
+    {
+      "id": "heroes",
+      "title": "金铲铲之战官方角色数据",
+      "url": "https://game.gtimg.cn/images/lol/act/jkzlk/js/18/18.18.3-S19/chess.js",
+      "checkedAt": "2026-10-04"
+    },
+    {
+      "id": "races",
+      "title": "金铲铲之战官方特质数据",
+      "url": "https://game.gtimg.cn/images/lol/act/jkzlk/js/18/18.18.3-S19/race.js",
+      "checkedAt": "2026-10-04"
+    },
+    {
+      "id": "jobs",
+      "title": "金铲铲之战官方职业数据",
+      "url": "https://game.gtimg.cn/images/lol/act/jkzlk/js/18/18.18.3-S19/job.js",
+      "checkedAt": "2026-10-04"
+    },
+    {
+      "id": "lineups",
+      "title": "金铲铲之战官方当前版本阵容攻略",
+      "url": "https://game.gtimg.cn/images/lol/act/jkzlkauto/json/lineupJson/m19/11/18/lineup_detail_total.json",
+      "checkedAt": "2026-10-04"
+    },
+    {
+      "id": "equipment",
+      "title": "金铲铲之战官方当前版本装备数据",
+      "url": "https://game.gtimg.cn/images/lol/act/jkzlk/js/18/18.18.3-S19/equip.js",
+      "checkedAt": "2026-10-04"
+    }
+  ],
+  "heroes": [
+    {
+      "id": "hero-11500",
+      "name": "奥恩",
+      "cost": 1,
+      "traits": [
+        "永恒之森",
+        "护卫"
+      ],
+      "skill": {
+        "name": "风箱炎息",
+        "description": "主动：获得持续4秒的400(【法术加成】)护盾，并对一个锥形范围内的敌人造成200(【法术加成】)魔法伤害。  任务：每场玩家对战，【奥恩】将已格挡的伤害储存为【锻炉能量】，在3星时提升85%。他每次获得足够的【锻炉能量】时，就会获得1个【神器锻造器】。(锻炉能量：0/0)"
+      },
+      "stats": {
+        "health": 700,
+        "attackDamage": 40,
+        "attackSpeed": 0.6,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "40/100",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【登神4星森林天使-凯尔】3日蚀骑士3永恒之森」阵容配装"
+          },
+          {
+            "name": "振奋盔甲",
+            "reason": "「【登神4星森林天使-凯尔】3日蚀骑士3永恒之森」阵容配装"
+          },
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【登神4星森林天使-凯尔】3日蚀骑士3永恒之森」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士",
+            "description": "S 级 · 官方阵容 #4838"
+          },
+          {
+            "name": "【秋季赛-TLG.糕手雕妹推荐】全三星凯尔",
+            "description": "S 级 · 官方阵容 #4808"
+          },
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11501",
+      "name": "洛",
+      "cost": 1,
+      "traits": [
+        "花仙子",
+        "主宰",
+        "重装战士"
+      ],
+      "skill": {
+        "name": "登场之舞",
+        "description": "获得持续4秒的270(【法术加成】)护盾，然后为本回合造成伤害最高的友军提供在4秒内持续衰减的90%(【法术加成】)攻击速度。"
+      },
+      "stats": {
+        "health": 700,
+        "attackDamage": 45,
+        "attackSpeed": 0.6,
+        "armor": 35,
+        "magicResist": 35,
+        "mana": "35/105",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【秋季赛-TLG.糕手雕妹推荐】全三星凯尔",
+            "description": "S 级 · 官方阵容 #4808"
+          },
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          },
+          {
+            "name": "【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪",
+            "description": "S 级 · 官方阵容 #4839"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11502",
+      "name": "蕾欧娜",
+      "cost": 1,
+      "traits": [
+        "日蚀骑士",
+        "护卫"
+      ],
+      "skill": {
+        "name": "护盾猛击",
+        "description": "被动：战斗开始时获得60(【法术加成】)额外护甲和魔抗，在12秒内逐渐衰减。  主动：猛击当前目标，造成60(【护甲】)魔法伤害，并使其眩晕1.5秒。"
+      },
+      "stats": {
+        "health": 750,
+        "attackDamage": 50,
+        "attackSpeed": 0.65,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "30/90",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【秋季赛-TLG.糕手雕妹推荐】全三星凯尔",
+            "description": "S 级 · 官方阵容 #4808"
+          },
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          },
+          {
+            "name": "【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士",
+            "description": "S 级 · 官方阵容 #4872"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11503",
+      "name": "可酷伯",
+      "cost": 1,
+      "traits": [
+        "约德尔人",
+        "斗士"
+      ],
+      "skill": {
+        "name": "生命之舞",
+        "description": "在2秒内持续回复314(【生命上限】【法术加成】)生命值。下一次攻击被替换为猛击，造成140(【生命上限】【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 700,
+        "attackDamage": 55,
+        "attackSpeed": 0.65,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "30/90",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【斗士剑圣-易】6斗士3灵魂莲华3约德尔人2魔战士",
+            "description": "A 级 · 官方阵容 #4802"
+          },
+          {
+            "name": "【黑荆棘小法-维迦】4黑荆棘3约德尔人2斗士",
+            "description": "A 级 · 官方阵容 #4813"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11504",
+      "name": "雷克塞",
+      "cost": 1,
+      "traits": [
+        "黑荆棘",
+        "斗士"
+      ],
+      "skill": {
+        "name": "连根拔起",
+        "description": "被动：每秒回复17(【生命上限】)生命值，施放技能后的3秒内该效果变为3倍。  主动：冲出地面，使邻格的敌人晕眩1秒并对其造成70(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 700,
+        "attackDamage": 50,
+        "attackSpeed": 0.55,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "40/100",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【献祭牛狼】4狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4909"
+          },
+          {
+            "name": "【6荆棘阿狸】6黑色荆棘3裁决使者3莲华2斗士2法师",
+            "description": "A 级 · 官方阵容 #4799"
+          },
+          {
+            "name": "【召唤双c-阿兹尔&峰喙鸟】3召唤师3峡谷野怪2黑荆棘",
+            "description": "A 级 · 官方阵容 #4815"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11505",
+      "name": "卡蜜尔",
+      "cost": 1,
+      "traits": [
+        "魔女",
+        "狂战士"
+      ],
+      "skill": {
+        "name": "防御横扫",
+        "description": "劈砍当前目标，造成160(【物理加成】【法术加成】)物理伤害，并获得60点护盾，持续2秒。"
+      },
+      "stats": {
+        "health": 700,
+        "attackDamage": 40,
+        "attackSpeed": 0.75,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "0/25",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "斯特拉克的挑战护手",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          },
+          {
+            "name": "无尽之刃",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          },
+          {
+            "name": "水银",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士",
+            "description": "S 级 · 官方阵容 #4872"
+          },
+          {
+            "name": "【秋季赛选手萨科推荐】3日蚀骑士2地狱火2护卫",
+            "description": "A 级 · 官方阵容 #4888"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11506",
+      "name": "阿卡丽",
+      "cost": 1,
+      "traits": [
+        "地狱火",
+        "魔战士",
+        "狂战士"
+      ],
+      "skill": {
+        "name": "苦无打击",
+        "description": "【魔战士】(【物理加成】)：对目标发射一连串苦无，造成155(【物理加成】【法术加成】)物理伤害。如果目标处于灼烧状态，则额外造成35(【物理加成】)伤害。  【魔战士】(【法术加成】)若该技能完成击败，则再次施放它。"
+      },
+      "stats": {
+        "health": 650,
+        "attackDamage": 40,
+        "attackSpeed": 0.75,
+        "armor": 35,
+        "magicResist": 35,
+        "mana": "0/25",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "珠光护手",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          },
+          {
+            "name": "正义之手",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          },
+          {
+            "name": "夜之锋刃",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士",
+            "description": "S 级 · 官方阵容 #4872"
+          },
+          {
+            "name": "【日月双蚀韦鲁斯】3日蚀骑士3月蚀骑士3地狱火",
+            "description": "A 级 · 官方阵容 #4772"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11507",
+      "name": "韦鲁斯",
+      "cost": 1,
+      "traits": [
+        "地狱火",
+        "迅捷射手"
+      ],
+      "skill": {
+        "name": "穿刺之箭",
+        "description": "蓄力，然后向目标所在且敌人最多的一条直线射出箭矢。它对命中的敌人造成445(【物理加成】【法术加成】)物理伤害，每穿过一个敌人，该伤害降低40%（最低为40%）"
+      },
+      "stats": {
+        "health": 500,
+        "attackDamage": 40,
+        "attackSpeed": 0.7,
+        "armor": 25,
+        "magicResist": 25,
+        "mana": "30/120",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "朔极之矛",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          },
+          {
+            "name": "无尽之刃",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          },
+          {
+            "name": "锐利之刃",
+            "reason": "「【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【高迅捷月男-厄斐琉斯】5迅捷射手3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4871"
+          },
+          {
+            "name": "【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士",
+            "description": "S 级 · 官方阵容 #4872"
+          },
+          {
+            "name": "【地狱火龙】5地狱火3峡谷野怪2重装战士",
+            "description": "S 级 · 官方阵容 #4873"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11508",
+      "name": "绯红树怪",
+      "cost": 1,
+      "traits": [
+        "峡谷野怪",
+        "猎人"
+      ],
+      "skill": {
+        "name": "刃叶",
+        "description": "召唤五片锋利如剃刀的叶子，朝当前目标聚拢，造成总计340(【物理加成】【法术加成】)物理伤害，并施加持续4秒的20%重伤效果和1%灼烧效果。  绯红霸符：【绯红树怪】每次技能施放获得22%的物理加成。绯红霸符：【绯红树怪】每次技能施放获得22%的物理加成。"
+      },
+      "stats": {
+        "health": 500,
+        "attackDamage": 40,
+        "attackSpeed": 0.7,
+        "armor": 25,
+        "magicResist": 25,
+        "mana": "0/50",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪",
+            "description": "S 级 · 官方阵容 #4839"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11509",
+      "name": "霞",
+      "cost": 1,
+      "traits": [
+        "永恒之森",
+        "花仙子",
+        "迅捷射手"
+      ],
+      "skill": {
+        "name": "羽衣风暴",
+        "description": "下5次攻击获得50%攻击速度。这些攻击会被替换为羽刃，造成68(【物理加成】)物理伤害和2(【法术加成】)护甲削减。"
+      },
+      "stats": {
+        "health": 450,
+        "attackDamage": 45,
+        "attackSpeed": 0.7,
+        "armor": 25,
+        "magicResist": 25,
+        "mana": "0/50",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士",
+            "description": "S 级 · 官方阵容 #4838"
+          },
+          {
+            "name": "【秋季赛-TLG.糕手雕妹推荐】全三星凯尔",
+            "description": "S 级 · 官方阵容 #4808"
+          },
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11510",
+      "name": "卡尔玛",
+      "cost": 1,
+      "traits": [
+        "灵魂莲华",
+        "法师"
+      ],
+      "skill": {
+        "name": "宿业羁绊",
+        "description": "束缚当前目标，对其造成280(【法术加成】)魔法伤害，持续1.50秒。随后释放一股能量波，对半径1格区域内的所有敌人造成125(【法术加成】)魔法伤害，并使敌人减速30%，持续2秒。  减速：降低攻击速度。"
+      },
+      "stats": {
+        "health": 500,
+        "attackDamage": 25,
+        "attackSpeed": 0.7,
+        "armor": 25,
+        "magicResist": 25,
+        "mana": "0/40",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【秋季赛选手雕妹推荐-日蚀妖姬云阿娜】3日蚀骑士3裁决使",
+            "description": "S 级 · 官方阵容 #4886"
+          },
+          {
+            "name": "【裁决召唤阿狸】3裁决使3召唤师2地狱火",
+            "description": "A 级 · 官方阵容 #4835"
+          },
+          {
+            "name": "【莲华蛇女-卡西奥佩娅】4法师3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4829"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11511",
+      "name": "苍蓝哨戒",
+      "cost": 1,
+      "traits": [
+        "峡谷野怪",
+        "神谕"
+      ],
+      "skill": {
+        "name": "蔚蓝激光",
+        "description": "开始每秒消耗35%最大法力值，并对目标引导一道激光。引导期间，每秒对其造成155(【法术加成】)魔法伤害，并使其魔法抗性降低3点。  青霸符：每引导4秒，就会获得2点法力回复。青霸符：每引导4秒，就会获得2点法力回复。"
+      },
+      "stats": {
+        "health": 500,
+        "attackDamage": 35,
+        "attackSpeed": 0.8,
+        "armor": 25,
+        "magicResist": 25,
+        "mana": "30/70",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "蓝霸符",
+            "reason": "「【秋季赛-潇之助推荐】7峡谷野怪2斗士」阵容配装"
+          },
+          {
+            "name": "虚空之杖",
+            "reason": "「【秋季赛-潇之助推荐】7峡谷野怪2斗士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【秋季赛-潇之助推荐】7峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4882"
+          },
+          {
+            "name": "【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4885"
+          },
+          {
+            "name": "【秋季赛李不言推荐-一刀流大嘴】3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4892"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-11512",
+      "name": "维迦",
+      "cost": 1,
+      "traits": [
+        "黑荆棘",
+        "约德尔人",
+        "法师"
+      ],
+      "skill": {
+        "name": "能量爆裂",
+        "description": "向目标发射一记巨大震波，造成200(【法术加成】)魔法伤害，若其生命值低于30%最大生命值，则提升至300(【法术加成】)。若目标倒下，则永久获得2%法术加成。  当前加成：0%【法术加成】"
+      },
+      "stats": {
+        "health": 500,
+        "attackDamage": 25,
+        "attackSpeed": 0.7,
+        "armor": 25,
+        "magicResist": 25,
+        "mana": "0/30",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【四法石头蛇-卡西奥佩娅】4法师3魔女2黑荆棘",
+            "description": "A 级 · 官方阵容 #4836"
+          },
+          {
+            "name": "【6荆棘阿狸】6黑色荆棘3裁决使者3莲华2斗士2法师",
+            "description": "A 级 · 官方阵容 #4799"
+          },
+          {
+            "name": "【6荆棘螳螂-卡兹克】6黑色荆棘3裁决使者2斗士2召唤使",
+            "description": "A 级 · 官方阵容 #4798"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12505",
+      "name": "约里克",
+      "cost": 1,
+      "traits": [
+        "灵魂莲华",
+        "主宰",
+        "召唤师"
+      ],
+      "skill": {
+        "name": "临终仪式",
+        "description": "被动：倒下时召唤一个夜幽游灵，拥有330(【生命上限】)点最大生命值，并且它会立即进行嘲讽从而迫使敌人们对其攻击。  主动：回复280(【法术加成】)生命值并打击目标，造成150(【物理加成】)物理伤害。"
+      },
+      "stats": {
+        "health": 650,
+        "attackDamage": 50,
+        "attackSpeed": 0.6,
+        "armor": 35,
+        "magicResist": 35,
+        "mana": "50/110",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【6主宰婕拉多拼84】6主宰2召唤2野兽之灵",
+            "description": "S 级 · 官方阵容 #4879"
+          },
+          {
+            "name": "【秋季赛选手雕妹推荐-日蚀妖姬云阿娜】3日蚀骑士3裁决使",
+            "description": "S 级 · 官方阵容 #4886"
+          },
+          {
+            "name": "【裁决花妖-婕拉】4裁决使3召唤师2地狱火",
+            "description": "A 级 · 官方阵容 #4791"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12500",
+      "name": "峡谷迅捷蟹",
+      "cost": 2,
+      "traits": [
+        "峡谷野怪",
+        "主宰"
+      ],
+      "skill": {
+        "name": "这种快乐你懂吗？",
+        "description": "被动：攻击被替换为一次舞蹈，对邻格的所有敌人造成50(【物理加成】)物理伤害。 主动：钻入地下，获得15%伤害减免，持续3秒，并在此期间持续回复325(【法术加成】)生命值。   绿霸符：当友军跌下50%生命值时，其回复15%最大生命值。绿霸符：当友军跌下50%生命值时，其回复15%最大生命值。"
+      },
+      "stats": {
+        "health": 950,
+        "attackDamage": 50,
+        "attackSpeed": 0.65,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "40/100",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          },
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          },
+          {
+            "name": "振奋盔甲",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪",
+            "description": "S 级 · 官方阵容 #4839"
+          },
+          {
+            "name": "【6主宰婕拉多拼84】6主宰2召唤2野兽之灵",
+            "description": "S 级 · 官方阵容 #4879"
+          },
+          {
+            "name": "【秋季赛-潇之助推荐】7峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4882"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12501",
+      "name": "阿利斯塔",
+      "cost": 2,
+      "traits": [
+        "永恒之森",
+        "斗士"
+      ],
+      "skill": {
+        "name": "凯旋怒吼",
+        "description": "怒吼，回复306(【生命上限】【法术加成】)生命值，净化限制效果。并为生命值最低的两名友军回复80(【法术加成】)生命值。然后猛击当前目标，造成180(【法术加成】)魔法伤害和1.5秒眩晕。"
+      },
+      "stats": {
+        "health": 950,
+        "attackDamage": 50,
+        "attackSpeed": 0.6,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "30/90",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【献祭牛狼】4狂战士2裁决使2重装战士」阵容配装"
+          },
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【献祭牛狼】4狂战士2裁决使2重装战士」阵容配装"
+          },
+          {
+            "name": "薄暮法袍",
+            "reason": "「【献祭牛狼】4狂战士2裁决使2重装战士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士",
+            "description": "S 级 · 官方阵容 #4838"
+          },
+          {
+            "name": "【献祭牛狼】4狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4909"
+          },
+          {
+            "name": "【永森九五】3永恒之森2斗士2主宰2裁决使",
+            "description": "A 级 · 官方阵容 #4766"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12502",
+      "name": "瑟庄妮",
+      "cost": 2,
+      "traits": [
+        "日蚀骑士",
+        "主宰"
+      ],
+      "skill": {
+        "name": "烈阳之怒",
+        "description": "获得持续4秒的315(【生命上限】【法术加成】)护盾值。然后，在一个锥形范围内进行顺劈以造成90(【法术加成】)魔法伤害，并沿直线进行打击，对被命中的敌人们造成120(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 50,
+        "attackSpeed": 0.6,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "40/100",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【秋季赛-TLG.糕手雕妹推荐】全三星凯尔」阵容配装"
+          },
+          {
+            "name": "冕卫",
+            "reason": "「【秋季赛-TLG.糕手雕妹推荐】全三星凯尔」阵容配装"
+          },
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【秋季赛-TLG.糕手雕妹推荐】全三星凯尔」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【秋季赛-TLG.糕手雕妹推荐】全三星凯尔",
+            "description": "S 级 · 官方阵容 #4808"
+          },
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          },
+          {
+            "name": "【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪",
+            "description": "S 级 · 官方阵容 #4839"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12503",
+      "name": "慎",
+      "cost": 2,
+      "traits": [
+        "地狱火",
+        "护卫"
+      ],
+      "skill": {
+        "name": "忍法！气合盾",
+        "description": "为【慎】提供350(【法术加成】)护盾值，以及为其附近1个受到伤害的友军提供200(【法术加成】)护盾值，持续4秒。两者接下来的3次攻击获得40%攻击速度并造成35(【法术加成】)额外魔法伤害。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 50,
+        "attackSpeed": 0.65,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "30/90",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【地狱火龙】5地狱火3峡谷野怪2重装战士",
+            "description": "S 级 · 官方阵容 #4873"
+          },
+          {
+            "name": "【护卫蛇女-卡西奥佩娅】6护卫2法师",
+            "description": "A 级 · 官方阵容 #4828"
+          },
+          {
+            "name": "【日月双蚀韦鲁斯】3日蚀骑士3月蚀骑士3地狱火",
+            "description": "A 级 · 官方阵容 #4772"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12504",
+      "name": "伊莉丝",
+      "cost": 2,
+      "traits": [
+        "魔女",
+        "重装战士"
+      ],
+      "skill": {
+        "name": "蜘蛛女皇",
+        "description": "变身为蜘蛛，并获得375最大生命值。处于蜘蛛形态时的攻击造成35(【法术加成】)额外魔法伤害，并治疗自身55(【法术加成】)生命值。后续施放提供在4秒内持续衰减的175%攻击速度。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 20,
+        "attackSpeed": 0.65,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "20/70",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【秋季赛-杰杰推荐】6重装战士3猎人」阵容配装"
+          },
+          {
+            "name": "圣盾使的誓约",
+            "reason": "「【秋季赛-杰杰推荐】6重装战士3猎人」阵容配装"
+          },
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【秋季赛-杰杰推荐】6重装战士3猎人」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          },
+          {
+            "name": "【秋季赛-杰杰推荐】6重装战士3猎人",
+            "description": "S 级 · 官方阵容 #4884"
+          },
+          {
+            "name": "【黑暗蜘蛛-伊莉丝】6重装战士3魔女2法师",
+            "description": "S 级 · 官方阵容 #4891"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12507",
+      "name": "暗影狼",
+      "cost": 2,
+      "traits": [
+        "峡谷野怪",
+        "狂战士"
+      ],
+      "skill": {
+        "name": "撕裂之爪",
+        "description": "跳向3格内生命值最低的敌人，造成120(【物理加成】【法术加成】)物理伤害。接下来2次攻击获得175%攻击速度并造成65(【物理加成】)额外物理伤害。  灰霸符：暗影狼拥有技能暴击和25%暴击率，基于已损失生命值最多提升至75%。灰霸符：暗影狼拥有技能暴击和25%暴击率，基于已损失生命值最多提升至75%。"
+      },
+      "stats": {
+        "health": 700,
+        "attackDamage": 50,
+        "attackSpeed": 0.75,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "0/40",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【献祭三狼】6狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4894"
+          },
+          {
+            "name": "【献祭牛狼】4狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4909"
+          },
+          {
+            "name": "【10峡谷野怪】10峡谷怪物2重装战士2劫掠梦魇",
+            "description": "A 级 · 官方阵容 #4800"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12508",
+      "name": "沃里克",
+      "cost": 2,
+      "traits": [
+        "黑荆棘",
+        "狂战士"
+      ],
+      "skill": {
+        "name": "野兽之口",
+        "description": "撕咬当前目标，造成230(【物理加成】)物理伤害，并治疗自身25%(【法术加成】)造成伤害的生命值。获得持续到战斗结束的20%攻击速度。"
+      },
+      "stats": {
+        "health": 750,
+        "attackDamage": 45,
+        "attackSpeed": 0.75,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "0/40",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "无尽之刃",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          },
+          {
+            "name": "正义之手",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          },
+          {
+            "name": "水银",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【献祭三狼】6狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4894"
+          },
+          {
+            "name": "【献祭牛狼】4狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4909"
+          },
+          {
+            "name": "【6荆棘阿狸】6黑色荆棘3裁决使者3莲华2斗士2法师",
+            "description": "A 级 · 官方阵容 #4799"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12509",
+      "name": "芸阿娜",
+      "cost": 2,
+      "traits": [
+        "灵魂莲华",
+        "裁决使"
+      ],
+      "skill": {
+        "name": "灵蕴拳",
+        "description": "冲刺并向当前目标发射一颗法球，造成170(【物理加成】【法术加成】)物理伤害并分裂，对附近2名敌人造成59(【物理加成】【法术加成】)物理伤害。"
+      },
+      "stats": {
+        "health": 550,
+        "attackDamage": 42,
+        "attackSpeed": 0.75,
+        "armor": 30,
+        "magicResist": 30,
+        "mana": "0/35",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "朔极之矛",
+            "reason": "「【秋季赛选手雕妹推荐-日蚀妖姬云阿娜】3日蚀骑士3裁决使」阵容配装"
+          },
+          {
+            "name": "最后的轻语",
+            "reason": "「【秋季赛选手雕妹推荐-日蚀妖姬云阿娜】3日蚀骑士3裁决使」阵容配装"
+          },
+          {
+            "name": "锐利之刃",
+            "reason": "「【秋季赛选手雕妹推荐-日蚀妖姬云阿娜】3日蚀骑士3裁决使」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【秋季赛选手雕妹推荐-日蚀妖姬云阿娜】3日蚀骑士3裁决使",
+            "description": "S 级 · 官方阵容 #4886"
+          },
+          {
+            "name": "【6荆棘阿狸】6黑色荆棘3裁决使者3莲华2斗士2法师",
+            "description": "A 级 · 官方阵容 #4799"
+          },
+          {
+            "name": "【莲华阿狸】7莲华2斗士2法师",
+            "description": "A 级 · 官方阵容 #4767"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12510",
+      "name": "凯特琳",
+      "cost": 2,
+      "traits": [
+        "魔女",
+        "猎人"
+      ],
+      "skill": {
+        "name": "狙击",
+        "description": "被动：每第3次普通攻击被替换为强力的狙击射击，造成210(【物理加成】【法术加成】)物理伤害。"
+      },
+      "stats": {
+        "health": 550,
+        "attackDamage": 50,
+        "attackSpeed": 0.7,
+        "armor": 30,
+        "magicResist": 30,
+        "mana": "0/0",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          },
+          {
+            "name": "锐利之刃",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          },
+          {
+            "name": "锐利之刃",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪",
+            "description": "S 级 · 官方阵容 #4839"
+          },
+          {
+            "name": "【秋季赛-杰杰推荐】6重装战士3猎人",
+            "description": "S 级 · 官方阵容 #4884"
+          },
+          {
+            "name": "【秋季赛杰杰推荐-重装凯特琳】4重装战士4猎人2野兽",
+            "description": "A 级 · 官方阵容 #4810"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12511",
+      "name": "乐芙兰",
+      "cost": 2,
+      "traits": [
+        "永恒之森",
+        "法师"
+      ],
+      "skill": {
+        "name": "镜花水月",
+        "description": "被动：在玩家对战结束后，你最强的那个【乐芙兰】有10%的几率生成你场上一个友军的1星复制品，每次参与击败后提升4%。   主动：向当前目标发射一个镜像，从而造成260(【法术加成】)魔法伤害，并对周围的敌人们造成100(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 550,
+        "attackDamage": 30,
+        "attackSpeed": 0.7,
+        "armor": 30,
+        "magicResist": 30,
+        "mana": "0/40",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "朔极之矛",
+            "reason": "「【登神4星森林天使-凯尔】3日蚀骑士3永恒之森」阵容配装"
+          },
+          {
+            "name": "红霸符",
+            "reason": "「【登神4星森林天使-凯尔】3日蚀骑士3永恒之森」阵容配装"
+          },
+          {
+            "name": "虚空之杖",
+            "reason": "「【登神4星森林天使-凯尔】3日蚀骑士3永恒之森」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【秋季赛-TLG.糕手雕妹推荐】全三星凯尔",
+            "description": "S 级 · 官方阵容 #4808"
+          },
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          },
+          {
+            "name": "【秋季赛选手雕妹推荐-日蚀妖姬云阿娜】3日蚀骑士3裁决使",
+            "description": "S 级 · 官方阵容 #4886"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12512",
+      "name": "凯尔",
+      "cost": 2,
+      "traits": [
+        "日蚀骑士",
+        "迅捷射手"
+      ],
+      "skill": {
+        "name": "太阳裁决",
+        "description": "被动：【凯尔】基于其星级获得飞升，并获得可叠加的增益。  第1次飞升：普攻造成62(【法术加成】)额外魔法伤害。 第2次飞升：普攻对命中的敌人施加持续2秒的20%魔抗击碎。 第3次飞升：普攻发射冲击波，对命中的所有其他弈子造成35(【法术加成】)魔法伤害。 第4次飞升：获得无限距离。每攻击3次焰浪变得更大。  魔抗击碎：降低魔法抗性。"
+      },
+      "stats": {
+        "health": 550,
+        "attackDamage": 10,
+        "attackSpeed": 0.75,
+        "armor": 30,
+        "magicResist": 30,
+        "mana": "0/0",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【秋季赛-TLG.糕手雕妹推荐】全三星凯尔」阵容配装"
+          },
+          {
+            "name": "海克斯科技枪刃",
+            "reason": "「【秋季赛-TLG.糕手雕妹推荐】全三星凯尔」阵容配装"
+          },
+          {
+            "name": "班克斯的魔法帽",
+            "reason": "「【秋季赛-TLG.糕手雕妹推荐】全三星凯尔」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【秋季赛-TLG.糕手雕妹推荐】全三星凯尔",
+            "description": "S 级 · 官方阵容 #4808"
+          },
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          },
+          {
+            "name": "【宝宝日蚀阿卡丽】3日蚀骑士3地狱火2狂战士",
+            "description": "S 级 · 官方阵容 #4872"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12513",
+      "name": "魔沼蛙",
+      "cost": 2,
+      "traits": [
+        "峡谷野怪",
+        "魔战士"
+      ],
+      "skill": {
+        "name": "打嗝泡泡",
+        "description": "【魔战士】(【法术加成】)：向当前目标喷吐一颗有毒泡泡，在命中第一名敌人时爆炸，造成225(【法术加成】)魔法伤害。半径1格内的敌人将在3秒里持续受到175(【法术加成】)魔法伤害。  【魔战士】(【物理加成】)：大幅缓速对方。  紫霸符：每5s【魔沼蛙】获得30%的法术加成。紫霸符：每5s【魔沼蛙】获得30%的法术加成。"
+      },
+      "stats": {
+        "health": 550,
+        "attackDamage": 30,
+        "attackSpeed": 0.7,
+        "armor": 30,
+        "magicResist": 30,
+        "mana": "0/45",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "金锅铲冠冕",
+            "reason": "「【10峡谷野怪】10峡谷怪物2重装战士2劫掠梦魇」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【斗士剑圣】4斗士4魔战士3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4805"
+          },
+          {
+            "name": "【魔战剑圣-易】4魔战士3峡谷野怪3神谕",
+            "description": "A 级 · 官方阵容 #4785"
+          },
+          {
+            "name": "【10峡谷野怪】10峡谷怪物2重装战士2劫掠梦魇",
+            "description": "A 级 · 官方阵容 #4800"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-12514",
+      "name": "提莫",
+      "cost": 2,
+      "traits": [
+        "约德尔人",
+        "神谕"
+      ],
+      "skill": {
+        "name": "内有真菌",
+        "description": "投掷2簇蘑菇，对相距最近的3个敌人造成55(【法术加成】)魔法伤害。然后猛摔出一个巨型蘑菇，对目标造成135(【法术加成】)魔法伤害。  每次施放有10%几率搜寻到一个额外的蘑菇，可供收集以获得额外效果。  红蘑菇：1次刷新(已搜寻到的红蘑菇：0) 绿蘑菇：1小小英雄生命值(已搜寻到的绿蘑菇：0) 黄蘑菇：2经验值(已搜寻到的黄蘑菇：0)"
+      },
+      "stats": {
+        "health": 550,
+        "attackDamage": 35,
+        "attackSpeed": 0.75,
+        "armor": 30,
+        "magicResist": 30,
+        "mana": "0/50",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4885"
+          },
+          {
+            "name": "【神谕小蓝】5神谕3峡谷野怪2重装战士2主宰",
+            "description": "A 级 · 官方阵容 #4820"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13500",
+      "name": "赫卡里姆",
+      "cost": 3,
+      "traits": [
+        "永恒之森",
+        "重装战士"
+      ],
+      "skill": {
+        "name": "恐惧之灵",
+        "description": "获得持续3秒的50护甲与魔抗，并在此期间持续回复375(【法术加成】)生命值，向相距最近的3名敌人派出幽魂骑兵，从而对其造成80(【法术加成】)魔法伤害和1.5秒晕眩。"
+      },
+      "stats": {
+        "health": 1100,
+        "attackDamage": 50,
+        "attackSpeed": 0.65,
+        "armor": 50,
+        "magicResist": 50,
+        "mana": "30/110",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "日炎斗篷",
+            "reason": "「【秋季赛-杰杰推荐】6重装战士3猎人」阵容配装"
+          },
+          {
+            "name": "薄暮法袍",
+            "reason": "「【秋季赛-杰杰推荐】6重装战士3猎人」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          },
+          {
+            "name": "【秋季赛-杰杰推荐】6重装战士3猎人",
+            "description": "S 级 · 官方阵容 #4884"
+          },
+          {
+            "name": "【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4885"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13501",
+      "name": "蔚",
+      "cost": 3,
+      "traits": [
+        "野兽之灵",
+        "主宰"
+      ],
+      "skill": {
+        "name": "狂怒之拳",
+        "description": "被动：攻击时回复22(【生命上限】)生命值  主动：发出一声原始怒吼，从而回复200(【法术加成】)生命值。然后获得85%攻击速度、15%伤害减免和控制免疫效果，持续3秒。"
+      },
+      "stats": {
+        "health": 1100,
+        "attackDamage": 45,
+        "attackSpeed": 0.75,
+        "armor": 50,
+        "magicResist": 50,
+        "mana": "0/60",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪",
+            "description": "S 级 · 官方阵容 #4839"
+          },
+          {
+            "name": "【地狱火艾希】5地狱火2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4859"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13502",
+      "name": "费德提克",
+      "cost": 3,
+      "traits": [
+        "绝命花妖",
+        "护卫",
+        "法师"
+      ],
+      "skill": {
+        "name": "收获",
+        "description": "使3个相距最近的敌人的魔抗降低10。然后在2秒里持续从它们身上汲取生命力，从而治疗自身410(【法术加成】)生命值，并在此期间持续对每个敌人造成共70(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 1000,
+        "attackDamage": 50,
+        "attackSpeed": 0.65,
+        "armor": 55,
+        "magicResist": 55,
+        "mana": "30/90",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "秘法手套",
+            "reason": "「【护卫蛇女-卡西奥佩娅】6护卫2法师」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【4法螳螂蛇-卡兹克&卡西奥佩娅】4法师3永恒之森",
+            "description": "A 级 · 官方阵容 #4830"
+          },
+          {
+            "name": "【护卫蛇女-卡西奥佩娅】6护卫2法师",
+            "description": "A 级 · 官方阵容 #4828"
+          },
+          {
+            "name": "【四法石头蛇-卡西奥佩娅】4法师3魔女2黑荆棘",
+            "description": "A 级 · 官方阵容 #4836"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13503",
+      "name": "远古石甲虫",
+      "cost": 3,
+      "traits": [
+        "峡谷野怪",
+        "斗士"
+      ],
+      "skill": {
+        "name": "岩之摇滚",
+        "description": "被动：倒下时，分裂成两个【小型石甲虫】，每个拥有182(【生命上限】)生命值，并且它们会立即进行嘲讽从而迫使敌人们对其进行攻击。  主动：获得175(【法术加成】)最大生命值，然后滚向目标，从而造成223(【物理加成】【生命上限】)伤害。  蓝灰霸符：倒下时，【远古石甲虫】和【小型石甲虫】为友军提供8%最大生命值护盾。蓝灰霸符：倒下时，【远古石甲虫】和【小型石甲虫】为友军提供8%最大生命值护盾。"
+      },
+      "stats": {
+        "health": 1100,
+        "attackDamage": 55,
+        "attackSpeed": 0.6,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "80/135",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "冕卫",
+            "reason": "「【秋季赛-潇之助推荐】7峡谷野怪2斗士」阵容配装"
+          },
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【秋季赛-潇之助推荐】7峡谷野怪2斗士」阵容配装"
+          },
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【秋季赛-潇之助推荐】7峡谷野怪2斗士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【秋季赛-潇之助推荐】7峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4882"
+          },
+          {
+            "name": "【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4885"
+          },
+          {
+            "name": "【斗士剑圣】4斗士4魔战士3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4805"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13504",
+      "name": "雷恩加尔",
+      "cost": 3,
+      "traits": [
+        "宿敌"
+      ],
+      "skill": {
+        "name": "无情",
+        "description": "跳向3格内生命值百分比最低的那个敌人并刺击，从而造成255(【物理加成】)物理伤害。然后治疗60(【法术加成】)生命值，治疗量基于已损失的生命值至多到120(【法术加成】)。  【世纪和解】加成：该技能25%治疗的生命值会提供给【卡兹克】。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 60,
+        "attackSpeed": 0.75,
+        "armor": 55,
+        "magicResist": 55,
+        "mana": "10/50",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【世纪和解】3裁决使3永恒之森2月光射线」阵容配装"
+          },
+          {
+            "name": "泰坦的坚决",
+            "reason": "「【世纪和解】3裁决使3永恒之森2月光射线」阵容配装"
+          },
+          {
+            "name": "夜之锋刃",
+            "reason": "「【世纪和解】3裁决使3永恒之森2月光射线」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【世纪和解】3裁决使3永恒之森2月光射线",
+            "description": "A 级 · 官方阵容 #4795"
+          },
+          {
+            "name": "【重装狮子狗-雷恩加尔】4重装战士3峡谷野怪",
+            "description": "A 级 · 官方阵容 #4788"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13505",
+      "name": "卡兹克",
+      "cost": 3,
+      "traits": [
+        "宿敌"
+      ],
+      "skill": {
+        "name": "品尝恐惧",
+        "description": "跃向3格内最远的敌人，对其造成265(【法术加成】)魔法伤害。如果其邻格没有其友军，则转而造成285(【法术加成】)魔法伤害并获得10法力值。  【世纪和解】加成：通过技能获得的5.0点法力值会提供给【雷恩加尔】。"
+      },
+      "stats": {
+        "health": 950,
+        "attackDamage": 40,
+        "attackSpeed": 0.85,
+        "armor": 55,
+        "magicResist": 55,
+        "mana": "0/25",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "班克斯的魔法帽",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          },
+          {
+            "name": "夜之锋刃",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          },
+          {
+            "name": "正义之手",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【献祭三狼】6狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4894"
+          },
+          {
+            "name": "【4法螳螂蛇-卡兹克&卡西奥佩娅】4法师3永恒之森",
+            "description": "A 级 · 官方阵容 #4830"
+          },
+          {
+            "name": "【世纪和解】3裁决使3永恒之森2月光射线",
+            "description": "A 级 · 官方阵容 #4795"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13506",
+      "name": "黛安娜",
+      "cost": 3,
+      "traits": [
+        "月蚀骑士",
+        "狂战士",
+        "重装战士"
+      ],
+      "skill": {
+        "name": "苍白屏障",
+        "description": "获得150(【法术加成】)护盾值，持续2秒，并放出6颗月光法球，由2格内的所有敌人分摊，每颗造成75(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 30,
+        "attackSpeed": 0.8,
+        "armor": 50,
+        "magicResist": 50,
+        "mana": "0/40",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          },
+          {
+            "name": "【高迅捷月男-厄斐琉斯】5迅捷射手3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4871"
+          },
+          {
+            "name": "【重装九五】4重装战士3峡谷野怪2地狱火",
+            "description": "S 级 · 官方阵容 #4875"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13507",
+      "name": "易",
+      "cost": 3,
+      "traits": [
+        "灵魂莲华",
+        "魔战士"
+      ],
+      "skill": {
+        "name": "无极剑道",
+        "description": "被动：每第3次攻击为双重打击。参与击败时，获得爆发性的移动速度。  【魔战士】(【物理加成】)：双重打击提供15%(【法术加成】)可叠加的攻击速度。  【魔战士】(【法术加成】)：双重打击会造成额外伤害并提供治疗。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 60,
+        "attackSpeed": 0.8,
+        "armor": 60,
+        "magicResist": 60,
+        "mana": "0/0",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【斗士剑圣】4斗士4魔战士3灵魂莲华」阵容配装"
+          },
+          {
+            "name": "斗士纹章",
+            "reason": "「【斗士剑圣】4斗士4魔战士3灵魂莲华」阵容配装"
+          },
+          {
+            "name": "夜之锋刃",
+            "reason": "「【斗士剑圣】4斗士4魔战士3灵魂莲华」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【斗士剑圣】4斗士4魔战士3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4805"
+          },
+          {
+            "name": "【魔战剑圣-易】4魔战士3峡谷野怪3神谕",
+            "description": "A 级 · 官方阵容 #4785"
+          },
+          {
+            "name": "【秋季赛潇之助推荐-剑圣大嘴】5灵魂莲华3魔战士",
+            "description": "A 级 · 官方阵容 #4825"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13508",
+      "name": "崔丝塔娜",
+      "cost": 3,
+      "traits": [
+        "花仙子",
+        "约德尔人",
+        "猎人"
+      ],
+      "skill": {
+        "name": "爆炸火花",
+        "description": "将一个爆炸火花吸附到目标上，持续4秒。生效期间，获得无限射程和60%(【法术加成】)攻击速度。持续时间结束后，爆炸火花会爆炸并造成由2格内的所有敌人间分摊的伤害，伤害值为160(【物理加成】)物理伤害+施放期间每次攻击提供额外10(【物理加成】)物理伤害。  如果携带爆炸火花的敌人倒下，那么爆炸火花会吸附至【崔丝塔娜】的新目标。"
+      },
+      "stats": {
+        "health": 650,
+        "attackDamage": 55,
+        "attackSpeed": 0.75,
+        "armor": 35,
+        "magicResist": 35,
+        "mana": "0/60",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【花仙小炮-崔丝塔娜】4仙灵3小精灵2护卫2主宰」阵容配装"
+          },
+          {
+            "name": "海克斯科技枪刃",
+            "reason": "「【花仙小炮-崔丝塔娜】4仙灵3小精灵2护卫2主宰」阵容配装"
+          },
+          {
+            "name": "最后的轻语",
+            "reason": "「【花仙小炮-崔丝塔娜】4仙灵3小精灵2护卫2主宰」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【秋季赛杰杰推荐-重装凯特琳】4重装战士4猎人2野兽",
+            "description": "A 级 · 官方阵容 #4810"
+          },
+          {
+            "name": "【花仙小炮-崔丝塔娜】4仙灵3小精灵2护卫2主宰",
+            "description": "A 级 · 官方阵容 #4793"
+          },
+          {
+            "name": "【斗士剑圣-易】6斗士3灵魂莲华3约德尔人2魔战士",
+            "description": "A 级 · 官方阵容 #4802"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13509",
+      "name": "深红锋喙鸟",
+      "cost": 3,
+      "traits": [
+        "峡谷野怪",
+        "迅捷射手",
+        "召唤师"
+      ],
+      "skill": {
+        "name": "鸟群之家",
+        "description": "在附近召唤4只不可被选取的【小锋喙鸟】，持续5.0(【法术加成】)秒。每次【深红锋喙鸟】攻击时，【小锋喙鸟】也会攻击同一敌人，造成22(【物理加成】)物理伤害。  橙霸符：造成物理伤害时会使敌人的护甲降低2。橙霸符：造成物理伤害时会使敌人的护甲降低2。"
+      },
+      "stats": {
+        "health": 650,
+        "attackDamage": 55,
+        "attackSpeed": 0.75,
+        "armor": 35,
+        "magicResist": 35,
+        "mana": "20/60",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "最后的轻语",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          },
+          {
+            "name": "海妖之怒",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          },
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          },
+          {
+            "name": "【高迅捷月男-厄斐琉斯】5迅捷射手3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4871"
+          },
+          {
+            "name": "【秋季赛-潇之助推荐】7峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4882"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13510",
+      "name": "阿兹尔",
+      "cost": 3,
+      "traits": [
+        "黑荆棘",
+        "裁决使",
+        "召唤师"
+      ],
+      "skill": {
+        "name": "沙兵现身",
+        "description": "接下来的6次攻击获得150%攻击速度并召唤2个士兵。这些攻击会被替换为指令，来命令每个士兵进行攻击，每次攻击造成46(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 650,
+        "attackDamage": 30,
+        "attackSpeed": 0.75,
+        "armor": 35,
+        "magicResist": 35,
+        "mana": "0/35",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "狂战士纹章",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          },
+          {
+            "name": "虚空之杖",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          },
+          {
+            "name": "莫雷洛秘典",
+            "reason": "「【献祭三狼】6狂战士2裁决使2重装战士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【秋季赛选手雕妹推荐-日蚀妖姬云阿娜】3日蚀骑士3裁决使",
+            "description": "S 级 · 官方阵容 #4886"
+          },
+          {
+            "name": "【献祭三狼】6狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4894"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13511",
+      "name": "卡西奥佩娅",
+      "cost": 3,
+      "traits": [
+        "魔女",
+        "法师"
+      ],
+      "skill": {
+        "name": "瘟毒爆炸",
+        "description": "对当前目标和最近的一个未中毒敌人施加毒素，在15秒内造成420(【法术加成】)魔法伤害。毒素可叠加。"
+      },
+      "stats": {
+        "health": 650,
+        "attackDamage": 30,
+        "attackSpeed": 0.75,
+        "armor": 35,
+        "magicResist": 35,
+        "mana": "0/30",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "大天使之杖",
+            "reason": "「【黑暗蜘蛛-伊莉丝】6重装战士3魔女2法师」阵容配装"
+          },
+          {
+            "name": "朔极之矛",
+            "reason": "「【黑暗蜘蛛-伊莉丝】6重装战士3魔女2法师」阵容配装"
+          },
+          {
+            "name": "海克斯科技枪刃",
+            "reason": "「【黑暗蜘蛛-伊莉丝】6重装战士3魔女2法师」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【黑暗蜘蛛-伊莉丝】6重装战士3魔女2法师",
+            "description": "S 级 · 官方阵容 #4891"
+          },
+          {
+            "name": "【4法螳螂蛇-卡兹克&卡西奥佩娅】4法师3永恒之森",
+            "description": "A 级 · 官方阵容 #4830"
+          },
+          {
+            "name": "【护卫蛇女-卡西奥佩娅】6护卫2法师",
+            "description": "A 级 · 官方阵容 #4828"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13512",
+      "name": "克格莫",
+      "cost": 3,
+      "traits": [
+        "帝王斑蝶",
+        "魔战士",
+        "神谕"
+      ],
+      "skill": {
+        "name": "天降重炮",
+        "description": "【魔战士】(【物理加成】)：向目标和相距最近的1名敌人喷射酸液，造成165(【物理加成】【法术加成】)物理伤害。低于50%最大生命值的敌人转而受到231(【物理加成】【法术加成】)物理伤害。  【魔战士】(【法术加成】)对敌人持续造成伤害。"
+      },
+      "stats": {
+        "health": 650,
+        "attackDamage": 40,
+        "attackSpeed": 0.8,
+        "armor": 35,
+        "magicResist": 35,
+        "mana": "15/55",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "无尽之刃",
+            "reason": "「【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士」阵容配装"
+          },
+          {
+            "name": "锐利之刃",
+            "reason": "「【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士」阵容配装"
+          },
+          {
+            "name": "锐利之刃",
+            "reason": "「【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4885"
+          },
+          {
+            "name": "【秋季赛李不言推荐-一刀流大嘴】3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4892"
+          },
+          {
+            "name": "【斗士剑圣】4斗士4魔战士3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4805"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-13515",
+      "name": "拉莫斯",
+      "cost": 3,
+      "traits": [
+        "约德尔人",
+        "护卫"
+      ],
+      "skill": {
+        "name": "尖刺防御",
+        "description": "嘲讽，从而强迫附近的敌人们攻击该弈子。获得持续4秒的400(【法术加成】)护盾值和60点护甲与魔抗。  护盾被打破时，对2格内的敌人造成50(【护甲】【魔法抗性】)物理伤害。"
+      },
+      "stats": {
+        "health": 1100,
+        "attackDamage": 50,
+        "attackSpeed": 0.6,
+        "armor": 50,
+        "magicResist": 50,
+        "mana": "30/80",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【护卫蛇女-卡西奥佩娅】6护卫2法师」阵容配装"
+          },
+          {
+            "name": "振奋盔甲",
+            "reason": "「【护卫蛇女-卡西奥佩娅】6护卫2法师」阵容配装"
+          },
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【护卫蛇女-卡西奥佩娅】6护卫2法师」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【护卫蛇女-卡西奥佩娅】6护卫2法师",
+            "description": "A 级 · 官方阵容 #4828"
+          },
+          {
+            "name": "【莲华蛇女-卡西奥佩娅】4法师3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4829"
+          },
+          {
+            "name": "【花仙小炮-崔丝塔娜】4仙灵3小精灵2护卫2主宰",
+            "description": "A 级 · 官方阵容 #4793"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14500",
+      "name": "苍蓝雕纹魔像",
+      "cost": 4,
+      "traits": [
+        "峡谷野怪",
+        "重装战士",
+        "神谕"
+      ],
+      "skill": {
+        "name": "蔚蓝冲击波",
+        "description": "获得持续4秒的480(【法术加成】【生命上限】)护盾值。猛击地面，向敌人最密集的方向发出一道裂隙。被命中的敌人会被短暂击飞，受到100(【法术加成】)魔法伤害和10破法。  蓝霸符：【苍蓝雕纹魔像】每次施放技能时，友军们就会获得2法力回复。蓝霸符：【苍蓝雕纹魔像】每次施放技能时，友军们就会获得2法力回复。  破法：提升下一次技能施放的法力消耗。"
+      },
+      "stats": {
+        "health": 1300,
+        "attackDamage": 75,
+        "attackSpeed": 0.6,
+        "armor": 60,
+        "magicResist": 60,
+        "mana": "60/150",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "圣盾使的誓约",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          },
+          {
+            "name": "振奋盔甲",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          },
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【巨龙九五】3峡谷怪物2主宰2烈焰",
+            "description": "S 级 · 官方阵容 #4765"
+          },
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          },
+          {
+            "name": "【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪",
+            "description": "S 级 · 官方阵容 #4839"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14501",
+      "name": "莫甘娜",
+      "cost": 4,
+      "traits": [
+        "魔女",
+        "神谕"
+      ],
+      "skill": {
+        "name": "枯萎诅咒",
+        "description": "被动：获得25%全能汲取。  主动：向附近3个敌人发射一道黑暗震波，造成60(【法术加成】)魔法伤害并诅咒他们4秒。然后，生成一个半径2格的枯萎地带，持续相同时长并且每秒造成33(【法术加成】)魔法伤害。被诅咒的敌人们受到22(【法术加成】)×诅咒数的额外伤害。"
+      },
+      "stats": {
+        "health": 1100,
+        "attackDamage": 45,
+        "attackSpeed": 0.75,
+        "armor": 60,
+        "magicResist": 60,
+        "mana": "0/65",
+        "range": 2,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "班克斯的魔法帽",
+            "reason": "「【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士」阵容配装"
+          },
+          {
+            "name": "珠光护手",
+            "reason": "「【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士」阵容配装"
+          },
+          {
+            "name": "莫雷洛秘典",
+            "reason": "「【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4885"
+          },
+          {
+            "name": "【黑暗蜘蛛-伊莉丝】6重装战士3魔女2法师",
+            "description": "S 级 · 官方阵容 #4891"
+          },
+          {
+            "name": "【秋季赛李不言推荐-一刀流大嘴】3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4892"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14502",
+      "name": "莉莉娅",
+      "cost": 4,
+      "traits": [
+        "花仙子",
+        "护卫"
+      ],
+      "skill": {
+        "name": "夜阑谣",
+        "description": "回复350(【法术加成】)生命值，并向附近的敌人们放出4只蝴蝶。在命中敌人时造成90(【法术加成】)魔法伤害并施加1.50秒昏睡。如果目标受到的伤害达到1000，则会醒来并额外受到10%最大生命值魔法伤害。"
+      },
+      "stats": {
+        "health": 1300,
+        "attackDamage": 40,
+        "attackSpeed": 0.65,
+        "armor": 60,
+        "magicResist": 60,
+        "mana": "40/140",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          },
+          {
+            "name": "日炎斗篷",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          },
+          {
+            "name": "圣盾使的誓约",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士",
+            "description": "S 级 · 官方阵容 #4838"
+          },
+          {
+            "name": "【护卫蛇女-卡西奥佩娅】6护卫2法师",
+            "description": "A 级 · 官方阵容 #4828"
+          },
+          {
+            "name": "【花仙小炮-崔丝塔娜】4仙灵3小精灵2护卫2主宰",
+            "description": "A 级 · 官方阵容 #4793"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14503",
+      "name": "阿木木",
+      "cost": 4,
+      "traits": [
+        "地狱火",
+        "主宰"
+      ],
+      "skill": {
+        "name": "阿木木的愤怒",
+        "description": "被动：每秒回复53(【生命上限】【法术加成】)生命值并对1格内的敌人们造成12(【法术加成】)魔法伤害。  主动：对2格内的敌人造成100(【法术加成】)魔法伤害和1秒晕眩，如果目标处于灼烧状态则延长至1.5秒。  灼烧：每秒造成目标一部分最大生命值的真实伤害。"
+      },
+      "stats": {
+        "health": 1300,
+        "attackDamage": 70,
+        "attackSpeed": 0.7,
+        "armor": 60,
+        "magicResist": 60,
+        "mana": "30/125",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "秘法手套",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【巨龙九五】3峡谷怪物2主宰2烈焰",
+            "description": "S 级 · 官方阵容 #4765"
+          },
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【地狱火艾希】5地狱火2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4859"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14504",
+      "name": "墨菲特",
+      "cost": 4,
+      "traits": [
+        "黑荆棘",
+        "魔岩巨兽"
+      ],
+      "skill": {
+        "name": "石化树皮",
+        "description": "获得持续4秒的700(【法术加成】)护盾值，并进入石化状态。护盾被打破时，释放一道黑暗能量波，对2格内的敌人们造成82(【法术加成】【护甲】【魔法抗性】)魔法伤害。"
+      },
+      "stats": {
+        "health": 1300,
+        "attackDamage": 70,
+        "attackSpeed": 0.55,
+        "armor": 70,
+        "magicResist": 70,
+        "mana": "30/80",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          },
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          },
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【裁决花妖-婕拉】4裁决使3召唤师2地狱火",
+            "description": "A 级 · 官方阵容 #4791"
+          },
+          {
+            "name": "【裁决召唤阿狸】3裁决使3召唤师2地狱火",
+            "description": "A 级 · 官方阵容 #4835"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14505",
+      "name": "瑟提",
+      "cost": 4,
+      "traits": [
+        "灵魂莲华",
+        "斗士"
+      ],
+      "skill": {
+        "name": "蓄意轰拳",
+        "description": "被动：每场战斗中首次跌至40%最大生命值以下时，获得100法力值。  主动：蓄力打出一记重拳，从而快速回复430(【生命上限】【法术加成】)生命值，随后在一个大型锥形范围内造成222(【生命上限】【物理加成】)物理伤害。"
+      },
+      "stats": {
+        "health": 1200,
+        "attackDamage": 80,
+        "attackSpeed": 0.65,
+        "armor": 60,
+        "magicResist": 60,
+        "mana": "60/135",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "日炎斗篷",
+            "reason": "「【秋季赛潇之助推荐-剑圣大嘴】5灵魂莲华3魔战士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【神谕大嘴-克格莫】5神谕3峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4885"
+          },
+          {
+            "name": "【斗士剑圣】4斗士4魔战士3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4805"
+          },
+          {
+            "name": "【秋季赛潇之助推荐-剑圣大嘴】5灵魂莲华3魔战士",
+            "description": "A 级 · 官方阵容 #4825"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14506",
+      "name": "绯红印记树怪",
+      "cost": 4,
+      "traits": [
+        "峡谷野怪",
+        "狂战士"
+      ],
+      "skill": {
+        "name": "猩红之怒",
+        "description": "被动：当目标倒下时，跃至下个目标，从而造成155(【物理加成】)物理伤害。  主动：获得持续8秒的80%物理加成。在此期间，无视45%(【法术加成】)护甲。  红霸符：攻击1%灼烧敌人并治疗【绯红印记树怪】4%最大生命值。红霸符：攻击1%灼烧敌人并治疗【绯红印记树怪】4%最大生命值。"
+      },
+      "stats": {
+        "health": 1100,
+        "attackDamage": 120,
+        "attackSpeed": 0.55,
+        "armor": 65,
+        "magicResist": 65,
+        "mana": "0/40",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "秘法手套",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          },
+          {
+            "name": "【高迅捷月男-厄斐琉斯】5迅捷射手3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4871"
+          },
+          {
+            "name": "【献祭牛狼】4狂战士2裁决使2重装战士",
+            "description": "S 级 · 官方阵容 #4909"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14507",
+      "name": "奈德丽",
+      "cost": 4,
+      "traits": [
+        "野兽之灵",
+        "魔战士"
+      ],
+      "skill": {
+        "name": "标枪投掷",
+        "description": "【魔战士】(【法术加成】)：下3次攻击获得150%攻击速度。这些攻击被替换为标枪，造成170(【法术加成】)魔法伤害。第3次攻击转而瞄准相距最远且携带最少装备的那个敌人，并造成330(【法术加成】)魔法伤害。  【魔战士】(【物理加成】)：变形为一只近战美洲狮刺客来挥击敌人们。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 35,
+        "attackSpeed": 0.8,
+        "armor": 30,
+        "magicResist": 30,
+        "mana": "0/45",
+        "range": 5,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          },
+          {
+            "name": "珠光护手",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          },
+          {
+            "name": "强袭者的链枷",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【6主宰婕拉多拼84】6主宰2召唤2野兽之灵",
+            "description": "S 级 · 官方阵容 #4879"
+          },
+          {
+            "name": "【秋季赛李不言推荐-一刀流大嘴】3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4892"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14508",
+      "name": "伊泽瑞尔",
+      "cost": 4,
+      "traits": [
+        "永恒之森",
+        "裁决使"
+      ],
+      "skill": {
+        "name": "森林疾风",
+        "description": "闪烁远离当前目标，对其造成250(【物理加成】)物理伤害，并获得30%(【法术加成】)攻击速度。  每第四次施放时，会消耗来自【森林疾风】的攻击速度，并释放一道贯穿最大的敌群的震波来造成385(【物理加成】)点物理伤害；它每穿过一个敌人就会降低25%伤害（最低为50%）。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 45,
+        "attackSpeed": 0.75,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "0/30",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "最后的轻语",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          },
+          {
+            "name": "无尽之刃",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          },
+          {
+            "name": "蓝霸符",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士",
+            "description": "S 级 · 官方阵容 #4838"
+          },
+          {
+            "name": "【裁决花妖-婕拉】4裁决使3召唤师2地狱火",
+            "description": "A 级 · 官方阵容 #4791"
+          },
+          {
+            "name": "【永森九五】3永恒之森2斗士2主宰2裁决使",
+            "description": "A 级 · 官方阵容 #4766"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14509",
+      "name": "厄斐琉斯",
+      "cost": 4,
+      "traits": [
+        "月蚀骑士",
+        "迅捷射手"
+      ],
+      "skill": {
+        "name": "月光对影",
+        "description": "装备断魄，并在2秒内对目标连续挥击0(【攻击速度】)次，每次造成65(【物理加成】)物理伤害。攻势结束后，发射一道月光，造成490(【物理加成】【法术加成】)物理伤害，由半径2格内的所有敌人分摊。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 60,
+        "attackSpeed": 0.8,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "20/70",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          },
+          {
+            "name": "海妖之怒",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          },
+          {
+            "name": "无尽之刃",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士",
+            "description": "S 级 · 官方阵容 #4838"
+          },
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          },
+          {
+            "name": "【高迅捷月男-厄斐琉斯】5迅捷射手3峡谷野怪2主宰",
+            "description": "S 级 · 官方阵容 #4871"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14510",
+      "name": "希维尔",
+      "cost": 4,
+      "traits": [
+        "野兽之灵",
+        "猎人"
+      ],
+      "skill": {
+        "name": "回旋之刃",
+        "description": "投掷一把巨大的十字刃，它会对当前敌人造成205(【物理加成】【法术加成】)物理伤害，并在附近敌人之间弹跳8次，每次弹跳造成41(【物理加成】【法术加成】)物理伤害。当这个技能击败了一个敌人，它会额外弹跳3次。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 50,
+        "attackSpeed": 0.8,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "0/40",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "朔极之矛",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          },
+          {
+            "name": "无尽之刃",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          },
+          {
+            "name": "最后的轻语",
+            "reason": "「【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【主宰猎人-凯特琳】4主宰3猎人3峡谷野怪",
+            "description": "S 级 · 官方阵容 #4839"
+          },
+          {
+            "name": "【地狱火艾希】5地狱火2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4859"
+          },
+          {
+            "name": "【艾龙九五】3峡谷野怪2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4876"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14511",
+      "name": "阿狸",
+      "cost": 4,
+      "traits": [
+        "灵魂莲华",
+        "法师"
+      ],
+      "skill": {
+        "name": "灵魄炸弹",
+        "description": "对4格内被最多敌人环绕的那个区域发射一颗灵魄炸弹。它对半径3格内的敌人造成455(【法术加成】)魔法伤害，与中心的距离每增加1格，该伤害就会衰减21%。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 40,
+        "attackSpeed": 0.8,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "20/100",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "珠光护手",
+            "reason": "「【裁决召唤阿狸】3裁决使3召唤师2地狱火」阵容配装"
+          },
+          {
+            "name": "朔极之矛",
+            "reason": "「【裁决召唤阿狸】3裁决使3召唤师2地狱火」阵容配装"
+          },
+          {
+            "name": "班克斯的魔法帽",
+            "reason": "「【裁决召唤阿狸】3裁决使3召唤师2地狱火」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【裁决召唤阿狸】3裁决使3召唤师2地狱火",
+            "description": "A 级 · 官方阵容 #4835"
+          },
+          {
+            "name": "【四法石头蛇-卡西奥佩娅】4法师3魔女2黑荆棘",
+            "description": "A 级 · 官方阵容 #4836"
+          },
+          {
+            "name": "【莲华蛇女-卡西奥佩娅】4法师3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4829"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14512",
+      "name": "婕拉",
+      "cost": 4,
+      "traits": [
+        "荆棘之兴",
+        "召唤师"
+      ],
+      "skill": {
+        "name": "狂野生长",
+        "description": "在战场周围生成2株植物，它们会攻击相距最近的敌人10次。每次攻击造成35(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 40,
+        "attackSpeed": 0.75,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "0/45",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "朔极之矛",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          },
+          {
+            "name": "大天使之杖",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          },
+          {
+            "name": "莫雷洛秘典",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          },
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【6主宰婕拉多拼84】6主宰2召唤2野兽之灵",
+            "description": "S 级 · 官方阵容 #4879"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-14513",
+      "name": "索拉卡",
+      "cost": 4,
+      "traits": [
+        "绝命花妖",
+        "裁决使"
+      ],
+      "skill": {
+        "name": "唤星",
+        "description": "召唤一颗星星落在当前目标身上，从而造成225(【法术加成】)魔法伤害。如果此前曾有一颗星星落至其上，则额外召唤3颗星星，每颗造成100(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 850,
+        "attackDamage": 30,
+        "attackSpeed": 0.75,
+        "armor": 40,
+        "magicResist": 40,
+        "mana": "0/30",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "纳什之牙",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          },
+          {
+            "name": "纳什之牙",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          },
+          {
+            "name": "班克斯的魔法帽",
+            "reason": "「【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【4法螳螂蛇-卡兹克&卡西奥佩娅】4法师3永恒之森",
+            "description": "A 级 · 官方阵容 #4830"
+          },
+          {
+            "name": "【裁决花妖-婕拉】4裁决使3召唤师2地狱火",
+            "description": "A 级 · 官方阵容 #4791"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15450",
+      "name": "茂凯",
+      "cost": 5,
+      "traits": [
+        "远古树精",
+        "主宰"
+      ],
+      "skill": {
+        "name": "播种",
+        "description": "被动：每格挡650伤害后，一株树苗会跳向附近的一名敌人并造成0(【生命上限】)魔法伤害。阵亡时，3株树苗会跳出。  主动：对目标造成0(【生命上限】)魔法伤害并回复330(【法术加成】)+10%已损失生命值。"
+      },
+      "stats": {
+        "health": 1150,
+        "attackDamage": 80,
+        "attackSpeed": 0.65,
+        "armor": 60,
+        "magicResist": 60,
+        "mana": "30/100",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "秘法手套",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【巨龙九五】3峡谷怪物2主宰2烈焰",
+            "description": "S 级 · 官方阵容 #4765"
+          },
+          {
+            "name": "【地狱火龙】5地狱火3峡谷野怪2重装战士",
+            "description": "S 级 · 官方阵容 #4873"
+          },
+          {
+            "name": "【6主宰婕拉多拼84】6主宰2召唤2野兽之灵",
+            "description": "S 级 · 官方阵容 #4879"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15451",
+      "name": "塔里克",
+      "cost": 5,
+      "traits": [
+        "宝石骑士",
+        "重装战士"
+      ],
+      "skill": {
+        "name": "翡翠辉耀",
+        "description": "被动：【塔里克】或其绑定的友军首次跌到50%生命值以下时，两人身上会释放翡翠能量，为3格内的友军提供持续3秒的270(【生命上限】)护盾值。  主动：回复275(【法术加成】)生命值，【塔里克】和其绑定的友军的下2次攻击造成100(【法术加成】)额外魔法伤害。"
+      },
+      "stats": {
+        "health": 1300,
+        "attackDamage": 55,
+        "attackSpeed": 0.75,
+        "armor": 65,
+        "magicResist": 65,
+        "mana": "0/65",
+        "range": 1,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "振奋盔甲",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          },
+          {
+            "name": "石像鬼石板甲",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          },
+          {
+            "name": "狂徒铠甲",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【巨龙九五】3峡谷怪物2主宰2烈焰",
+            "description": "S 级 · 官方阵容 #4765"
+          },
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          },
+          {
+            "name": "【地狱火艾希】5地狱火2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4859"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15452",
+      "name": "纳尔",
+      "cost": 5,
+      "traits": [
+        "永恒之森",
+        "约德尔人",
+        "斗士"
+      ],
+      "skill": {
+        "name": "狂怒基因",
+        "description": "被动：每秒获得5怒气并且每次攻击提供5怒气。  主动：变形为【巨型纳尔】并跃至3格内最大的敌群。然后，对2格内的敌人们造成100【物理加成】物理伤害，将其护甲和魔抗降低15(【法术加成】)，并令其晕眩1秒。【巨型纳尔】获得400生命值，并将其技能替换为“抓投”。  抓投：抓住目标并将其投向相距最远的那个敌人，对主要目标造成380【物理加成】物理伤害，并对途经的敌人造成135【物理加成】物理伤害。如果目标是最后存活的1名敌人，则转而将其抛出战场。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 100,
+        "attackSpeed": 0.9,
+        "armor": 55,
+        "magicResist": 55,
+        "mana": "0/70",
+        "range": 2,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "秘法手套",
+            "reason": "「【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【永森月男-厄斐琉斯】7永恒之森2迅捷射手2斗士",
+            "description": "S 级 · 官方阵容 #4838"
+          },
+          {
+            "name": "【秋季赛-潇之助推荐】7峡谷野怪2斗士",
+            "description": "S 级 · 官方阵容 #4882"
+          },
+          {
+            "name": "【斗士剑圣】4斗士4魔战士3灵魂莲华",
+            "description": "A 级 · 官方阵容 #4805"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15453",
+      "name": "凯南",
+      "cost": 5,
+      "traits": [
+        "地狱火",
+        "裁决使"
+      ],
+      "skill": {
+        "name": "火焰风暴",
+        "description": "蓄力，每有一名被灼烧的敌人便获得15%法术加成。随后，获得持续2.5秒的250(【法术加成】)护盾值，然后冲刺穿过附近的一群敌人，对每个敌人造成80(【法术加成】)魔法伤害。冲刺后，释放一场半径2格的火焰风暴，在2秒内持续造成共计475(【法术加成】)魔法伤害，由所有被命中的敌人均摊。"
+      },
+      "stats": {
+        "health": 1200,
+        "attackDamage": 50,
+        "attackSpeed": 0.85,
+        "armor": 60,
+        "magicResist": 60,
+        "mana": "0/40",
+        "range": 2,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "秘法手套",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【巨龙九五】3峡谷怪物2主宰2烈焰",
+            "description": "S 级 · 官方阵容 #4765"
+          },
+          {
+            "name": "【地狱火艾希】5地狱火2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4859"
+          },
+          {
+            "name": "【地狱火龙】5地狱火3峡谷野怪2重装战士",
+            "description": "S 级 · 官方阵容 #4873"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15454",
+      "name": "艾希",
+      "cost": 5,
+      "traits": [
+        "灵魂莲华",
+        "猎人"
+      ],
+      "skill": {
+        "name": "灵魂裂隙",
+        "description": "沿敌人最多的那条直线发射一支箭矢，造成465(【物理加成】)物理伤害，这个伤害每命中一个敌人就会衰减80%(最低为20%)。  这支箭矢会留下一道持续3秒的痕迹，对其中的敌人每秒造成9(【物理加成】) + 2(【法术加成】) + 2%最大生命值的物理伤害，并施加20%缓速效果。  缓速：降低攻击速度。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 75,
+        "attackSpeed": 0.8,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "20/80",
+        "range": 5,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "朔极之矛",
+            "reason": "「【地狱火艾希】5地狱火2重装战士2猎人」阵容配装"
+          },
+          {
+            "name": "地狱火纹章",
+            "reason": "「【地狱火艾希】5地狱火2重装战士2猎人」阵容配装"
+          },
+          {
+            "name": "红霸符",
+            "reason": "「【地狱火艾希】5地狱火2重装战士2猎人」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【地狱火艾希】5地狱火2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4859"
+          },
+          {
+            "name": "【艾龙九五】3峡谷野怪2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4876"
+          },
+          {
+            "name": "【秋季赛-杰杰推荐】6重装战士3猎人",
+            "description": "S 级 · 官方阵容 #4884"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15455",
+      "name": "德莱文",
+      "cost": 5,
+      "traits": [
+        "赏金猎人"
+      ],
+      "skill": {
+        "name": "冷血追命",
+        "description": "被动：对距离内的随机敌人进行攻击并对其施加一层受伤效果，在12秒里持续造成共140(【物理加成】)物理伤害。每次攻击还有12%(【法术加成】)几率造成50%额外物理伤害并转而施加2层受伤效果。  主动：朝受伤层数最多的敌人投掷两把巨斧。对被命中的敌人造成100(【物理加成】)物理伤害并消耗他们的受伤效果，即刻造成剩余伤害。然后巨斧返回，对被命中的敌人造成30(【物理加成】)物理伤害。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 48,
+        "attackSpeed": 0.85,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "0/110",
+        "range": 5,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "鬼索的狂暴之刃",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          },
+          {
+            "name": "锐利之刃",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          },
+          {
+            "name": "海妖之怒",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【巨龙九五】3峡谷怪物2主宰2烈焰",
+            "description": "S 级 · 官方阵容 #4765"
+          },
+          {
+            "name": "【永森九五】3永恒之森2斗士2主宰2裁决使",
+            "description": "A 级 · 官方阵容 #4766"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15456",
+      "name": "拉露恩",
+      "cost": 5,
+      "traits": [
+        "月华神女",
+        "月蚀骑士",
+        "法师"
+      ],
+      "skill": {
+        "name": "月华倾落",
+        "description": "向3个最近的敌人降下9枚月光碎片，每枚造成55(【法术加成】)魔法伤害。  满月时，月曜降临，造成由所有敌人分摊的2350(【法术加成】)魔法伤害。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 40,
+        "attackSpeed": 0.8,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "0/35",
+        "range": 4,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "纳什之牙",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          },
+          {
+            "name": "纳什之牙",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          },
+          {
+            "name": "珠光护手",
+            "reason": "「【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【秋季赛-TLG.糕手雕妹推荐】全三星凯尔",
+            "description": "S 级 · 官方阵容 #4808"
+          },
+          {
+            "name": "【登神4星森林天使-凯尔】3日蚀骑士3永恒之森",
+            "description": "S 级 · 官方阵容 #4774"
+          },
+          {
+            "name": "【重装月男鸡哥双c】4重装战士3月蚀骑士2迅捷射手",
+            "description": "S 级 · 官方阵容 #4768"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15457",
+      "name": "艾翁",
+      "cost": 5,
+      "traits": [
+        "翠神"
+      ],
+      "skill": {
+        "name": "种豆得瓜",
+        "description": "被动：来自这个技能的护盾值可以通过技能暴击来产生暴击。  主动：为2名友军提供0.0(【法术加成】【伤害加成】)护盾和10%伤害增幅，持续6秒。随后对其邻格的敌人造成155(【法术加成】)魔法伤害。施放6次后，该技能还会为目标提供100%可叠加的攻击速度。"
+      },
+      "stats": {
+        "health": 1000,
+        "attackDamage": 60,
+        "attackSpeed": 0.8,
+        "armor": 55,
+        "magicResist": 55,
+        "mana": "50/80",
+        "range": 3,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [
+          {
+            "name": "【巨龙九五】3峡谷怪物2主宰2烈焰",
+            "description": "S 级 · 官方阵容 #4765"
+          },
+          {
+            "name": "【黄铜拼多多豹女-奈德丽】2魔战士2裁决使2召唤师",
+            "description": "S 级 · 官方阵容 #4794"
+          },
+          {
+            "name": "【地狱火艾希】5地狱火2重装战士2猎人",
+            "description": "S 级 · 官方阵容 #4859"
+          }
+        ],
+        "sourceIds": [
+          "lineups"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15458",
+      "name": "远古巨龙",
+      "cost": 5,
+      "traits": [
+        "顶级掠食者",
+        "峡谷野怪"
+      ],
+      "skill": {
+        "name": "绝伦火热",
+        "description": "被动：普攻对目标邻格的敌人们造成75%伤害。  主动：变成不可被选取状态并飞到空中，从而获得15%全能汲取。在返程时，对所有敌人造成1.25秒晕眩和持续3秒的【引燃】。后续技能会被替换为【烈焰吐息】并且立刻释放。被【引燃】的敌人每秒受到2%最大生命值物理伤害。  烈焰吐息：向贯穿目标的一条敌人最多的直线喷吐火焰，从而造成305(【物理加成】)物理伤害，火焰每穿过一个敌人会减少20%的伤害（最低为20%）对命中的敌人造成持续3秒的【引燃】。  远古巨龙霸符：对生命值低于12%生命值的敌人造成伤害时会将其终结。远古巨龙霸符：对生命值低于12%生命值的敌人造成伤害时会将其终结。"
+      },
+      "stats": {
+        "health": 1800,
+        "attackDamage": 125,
+        "attackSpeed": 0.5,
+        "armor": 75,
+        "magicResist": 75,
+        "mana": "20/60",
+        "range": 2,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [
+          {
+            "name": "无尽之刃",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          },
+          {
+            "name": "最后的轻语",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          },
+          {
+            "name": "正义之手",
+            "reason": "「【巨龙九五】3峡谷怪物2主宰2烈焰」阵容配装"
+          }
+        ],
+        "comps": [
+          {
+            "name": "【巨龙九五】3峡谷怪物2主宰2烈焰",
+            "description": "S 级 · 官方阵容 #4765"
+          },
+          {
+            "name": "【地狱火龙】5地狱火3峡谷野怪2重装战士",
+            "description": "S 级 · 官方阵容 #4873"
+          },
+          {
+            "name": "【重装九五】4重装战士3峡谷野怪2地狱火",
+            "description": "S 级 · 官方阵容 #4875"
+          }
+        ],
+        "sourceIds": [
+          "lineups",
+          "equipment"
+        ]
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    },
+    {
+      "id": "hero-15459",
+      "name": "拉克丝",
+      "cost": 5,
+      "traits": [
+        "大元素使"
+      ],
+      "skill": {
+        "name": "终极闪光",
+        "description": "被动：施放时，所有与【拉克丝】拥有同一特质/职业的己方弈子获得3(【法术加成】)法力值。  主动：向最大的敌群发射一道激光，造成375(【法术加成】)魔法伤害，每命中一个敌人，该伤害衰减25%（最低为40%）。"
+      },
+      "stats": {
+        "health": 900,
+        "attackDamage": 40,
+        "attackSpeed": 0.8,
+        "armor": 45,
+        "magicResist": 45,
+        "mana": "20/70",
+        "range": 5,
+        "critChance": "25%"
+      },
+      "recommendations": {
+        "patch": "18.18.3",
+        "items": [],
+        "comps": [],
+        "sourceIds": []
+      },
+      "variants": [
+        {
+          "id": "card",
+          "kind": "card"
+        },
+        {
+          "id": "splash",
+          "kind": "splash"
+        }
+      ]
+    }
+  ]
+}

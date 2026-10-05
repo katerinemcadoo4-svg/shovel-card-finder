@@ -1,0 +1,7 @@
+dist/
+node_modules/
+.npm-cache/
+local-packs/
+data/upstream-*
+*.log
+.DS_Store

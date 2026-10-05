@@ -1,0 +1,8 @@
+OpenCV.js 4.8.0
+Project: https://opencv.org/
+Bundled script: https://docs.opencv.org/4.8.0/opencv.js
+SHA-256: 806cb5646afa6fa946b736afa1beaf1443bdfda718404d75f9794ddc2c10b1cc
+License: Apache License, Version 2.0. See OPENCV-LICENSE.txt.
+
+The bundled script includes its WebAssembly binary as a base64 data URI. It
+does not require a separate .wasm download at runtime.

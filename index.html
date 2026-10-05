@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#111b2b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="在 iPhone 上识别金铲铲角色牌，查看有出处的赛季资料。图片仅在本机处理。" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="./assets/icon.svg" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>铲牌识别</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="铲牌识别">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <div>
+            <strong>铲牌识别</strong>
+            <span class="brand-subtitle">金铲铲角色图鉴</span>
+          </div>
+        </div>
+        <span class="season-chip" id="season-chip">资料待导入</span>
+      </header>
+
+      <div class="update-banner" id="update-banner" hidden role="status">
+        <span>新版本已准备好。</span>
+        <button type="button" id="apply-update">立即更新</button>
+      </div>
+
+      <main>
+        <section class="view view-active" id="scan-view" aria-labelledby="scan-title">
+          <div class="page-heading">
+            <p class="eyebrow">识别角色</p>
+            <h1 id="scan-title">一张图片，找到这张牌</h1>
+            <p class="heading-copy">选择角色游戏图或原画。识别在这台设备上进行，图片不会上传。</p>
+          </div>
+
+          <div class="scan-card">
+            <div class="scan-art" id="scan-art" aria-hidden="true">
+              <div class="scan-frame scan-frame-one"></div>
+              <div class="scan-frame scan-frame-two"></div>
+              <span class="scan-symbol">✦</span>
+            </div>
+            <div class="scan-preview" id="scan-preview" hidden>
+              <img id="preview-image" alt="待识别图片预览" />
+              <div class="detected-box" id="detected-box" hidden aria-hidden="true"></div>
+              <span class="preview-label">待识别图片</span>
+            </div>
+            <div class="scan-actions">
+              <label class="primary-button upload-button" for="image-input">
+                <span aria-hidden="true">⌑</span>
+                选择图片
+              </label>
+              <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp,image/heic,image/heif" />
+              <p class="micro-copy">支持相册中的截图与原画 · 一次识别一个角色</p>
+            </div>
+          </div>
+
+          <div class="inline-status" id="scan-status" role="status" aria-live="polite">
+            <span class="status-dot"></span>
+            <span id="scan-status-text">先导入当前赛季资料，即可开始识别。</span>
+          </div>
+
+          <section class="result-section" id="result-section" hidden aria-labelledby="result-title">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">识别结果</p>
+                <h2 id="result-title">候选角色</h2>
+              </div>
+              <span class="result-tag" id="result-tag">待确认</span>
+            </div>
+            <p class="result-note" id="result-note"></p>
+            <div class="candidate-list" id="candidate-list"></div>
+          </section>
+
+          <section class="detail-panel" id="detail-panel" hidden aria-labelledby="detail-title"></section>
+        </section>
+
+        <section class="view" id="atlas-view" hidden aria-labelledby="atlas-title">
+          <div class="page-heading">
+            <p class="eyebrow">角色图鉴</p>
+            <h1 id="atlas-title">按名字找角色</h1>
+            <p class="heading-copy">浏览当前赛季的角色与资料。攻略内容会标注适用版本。</p>
+          </div>
+          <label class="search-field" for="atlas-search">
+            <span aria-hidden="true">⌕</span>
+            <input id="atlas-search" type="search" placeholder="搜索角色或羁绊" autocomplete="off" />
+          </label>
+          <div class="atlas-meta" id="atlas-meta"></div>
+          <div class="hero-list" id="hero-list"></div>
+          <section class="detail-panel" id="atlas-detail" hidden aria-labelledby="atlas-detail-title"></section>
+        </section>
+
+        <section class="view" id="library-view" hidden aria-labelledby="library-title">
+          <div class="page-heading">
+            <p class="eyebrow">资料管理</p>
+            <h1 id="library-title">资料与隐私</h1>
+            <p class="heading-copy">识别用的图片只存于本机。赛季资料和图片来源会在这里显示。</p>
+          </div>
+          <div class="info-card" id="catalog-info"></div>
+          <div class="info-card">
+            <h2>导入本地素材包</h2>
+            <p>若角色图片不能随公开站点提供，可导入包含资料与参考图的 ZIP。导入后只保存在这台设备。</p>
+            <label class="secondary-button upload-button" for="pack-input">选择 ZIP 素材包</label>
+            <input id="pack-input" type="file" accept=".zip,application/zip" />
+            <p class="micro-copy" id="pack-status">尚未导入本地素材包。</p>
+            <button type="button" class="text-button" id="clear-pack" hidden>移除本地素材包</button>
+          </div>
+          <div class="info-card">
+            <h2>安装到 iPhone 主屏幕</h2>
+            <ol class="steps">
+              <li>用 Safari 打开此网页。</li>
+              <li>点击分享按钮，选择“添加到主屏幕”。</li>
+              <li>从主屏幕图标打开。首次加载和更新需要联网。</li>
+            </ol>
+          </div>
+          <div class="info-card subtle-card">
+            <h2>本地识别</h2>
+            <p>选入的截图和原画不会发送到服务器。若图片不清楚、角色尚未收录或匹配证据不足，应用会给出“未确定”。</p>
+            <p class="micro-copy" id="app-version">应用版本读取中</p>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="主导航">
+        <button type="button" class="nav-item nav-active" data-view="scan-view" aria-current="page"><span aria-hidden="true">⌑</span><span>识别</span></button>
+        <button type="button" class="nav-item" data-view="atlas-view"><span aria-hidden="true">▦</span><span>图鉴</span></button>
+        <button type="button" class="nav-item" data-view="library-view"><span aria-hidden="true">☰</span><span>资料</span></button>
+      </nav>
+    </div>
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

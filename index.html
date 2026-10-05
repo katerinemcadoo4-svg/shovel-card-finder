@@ -83,15 +83,23 @@
         <section class="view" id="atlas-view" hidden aria-labelledby="atlas-title">
           <div class="page-heading">
             <p class="eyebrow">角色图鉴</p>
-            <h1 id="atlas-title">按名字找角色</h1>
-            <p class="heading-copy">浏览当前赛季的角色与资料。攻略内容会标注适用版本。</p>
+            <h1 id="atlas-title">按费用浏览角色</h1>
+            <p class="heading-copy">按 1～5 费分类浏览，也可搜索角色或羁绊。攻略内容会标注适用版本。</p>
           </div>
           <label class="search-field" for="atlas-search">
             <span aria-hidden="true">⌕</span>
-            <input id="atlas-search" type="search" placeholder="搜索角色或羁绊" autocomplete="off" />
+            <input id="atlas-search" type="search" aria-label="搜索角色或羁绊" placeholder="搜索角色或羁绊" autocomplete="off" />
           </label>
-          <div class="atlas-meta" id="atlas-meta"></div>
-          <div class="hero-list" id="hero-list"></div>
+          <div class="cost-filters" id="cost-filters" role="group" aria-label="按费用筛选">
+            <button type="button" class="cost-filter" data-cost="all" aria-pressed="true">全部</button>
+            <button type="button" class="cost-filter" data-cost="1" aria-pressed="false">1 费</button>
+            <button type="button" class="cost-filter" data-cost="2" aria-pressed="false">2 费</button>
+            <button type="button" class="cost-filter" data-cost="3" aria-pressed="false">3 费</button>
+            <button type="button" class="cost-filter" data-cost="4" aria-pressed="false">4 费</button>
+            <button type="button" class="cost-filter" data-cost="5" aria-pressed="false">5 费</button>
+          </div>
+          <div class="atlas-meta" id="atlas-meta" role="status" aria-live="polite"></div>
+          <div class="atlas-groups" id="hero-list"></div>
           <section class="detail-panel" id="atlas-detail" hidden aria-labelledby="atlas-detail-title"></section>
         </section>
 

@@ -1,4 +1,4 @@
-const APP_VERSION = '0.1.0';
+const APP_VERSION = '0.1.1';
 const CACHE_NAME = `shovel-card-${APP_VERSION}`;
 const CORE = [
   './', './index.html', './app.mjs', './styles.css',

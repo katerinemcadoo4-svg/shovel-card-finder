@@ -118,6 +118,14 @@ input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; over
 .search-field input { flex: 1 1 auto; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font-size: 14px; }
 .search-field input::placeholder { color: var(--subtle); }
 .atlas-meta { margin: 17px 0 12px; color: var(--subtle); font-size: 11px; }
+.cost-filters { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-top: 12px; }
+.cost-filter { min-height: 44px; padding: 0 3px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--muted); font-size: 12px; font-weight: 600; }
+.cost-filter:hover { border-color: var(--gold-deep); }
+.cost-filter[aria-pressed="true"] { border-color: var(--gold); background: var(--gold); color: var(--bg); }
+.atlas-groups { display: grid; gap: 24px; }
+.cost-group-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.cost-group-heading h2 { font-size: 16px; }
+.cost-group-count { color: var(--subtle); font-size: 11px; }
 
 .info-card { margin-top: 12px; padding: 17px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .info-card h2 { margin-bottom: 10px; font-size: 15px; }

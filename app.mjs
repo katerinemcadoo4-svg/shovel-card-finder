@@ -17,6 +17,7 @@ const state = {
   pack: null,
   busy: false,
   detectedBox: null,
+  atlasCost: null,
 };
 
 const statLabels = {
@@ -194,15 +195,32 @@ function renderAtlas() {
   const heroes = state.catalog?.heroes || [];
   const filtered = heroes.filter(hero => {
     const haystack = [hero.name, ...(hero.traits || [])].join(' ').toLowerCase();
-    return haystack.includes(search);
+    return (state.atlasCost === null || hero.cost === state.atlasCost) && haystack.includes(search);
   });
-  $('atlas-meta').textContent = heroes.length ? `共 ${filtered.length} / ${heroes.length} 名角色` : '尚无已核验的赛季角色资料';
+  const costLabel = state.atlasCost === null ? '全部费用' : `${state.atlasCost} 费`;
+  $('atlas-meta').textContent = heroes.length ? `${costLabel} · ${search ? '找到' : '共'} ${filtered.length} 名角色` : '尚无已核验的赛季角色资料';
   const list = $('hero-list');
   if (!filtered.length) {
-    replaceChildren(list, node('div', 'empty-note', heroes.length ? '没有找到符合条件的角色。' : '导入含当前赛季资料的素材包后，图鉴会显示在这里。'));
+    replaceChildren(list, node('div', 'empty-note', heroes.length ? `没有找到符合条件的${state.atlasCost === null ? '' : ` ${state.atlasCost} 费`}角色。` : '导入含当前赛季资料的素材包后，图鉴会显示在这里。'));
     return;
   }
-  replaceChildren(list, ...filtered.map(hero => makeHeroRow(hero, { onClick: () => renderDetail(hero, 'atlas-detail') })));
+  const groups = [];
+  const costs = [...new Set(filtered.map(hero => hero.cost))].sort((a, b) => a - b);
+  for (const cost of costs) {
+    const members = filtered.filter(hero => hero.cost === cost);
+    if (!members.length) continue;
+    const group = node('section', 'cost-group');
+    const heading = node('div', 'cost-group-heading');
+    const title = node('h2', '', `${cost} 费角色`);
+    title.id = `cost-group-${cost}`;
+    group.setAttribute('aria-labelledby', title.id);
+    heading.append(title, node('span', 'cost-group-count', `${members.length} 名`));
+    const rows = node('div', 'hero-list');
+    rows.append(...members.map(hero => makeHeroRow(hero, { onClick: () => renderDetail(hero, 'atlas-detail') })));
+    group.append(heading, rows);
+    groups.push(group);
+  }
+  replaceChildren(list, ...groups);
 }
 
 function infoPair(label, value) {
@@ -428,7 +446,20 @@ async function registerUpdates() {
 
 async function init() {
   document.querySelectorAll('.nav-item').forEach(button => button.addEventListener('click', () => navigate(button.dataset.view)));
-  $('atlas-search').addEventListener('input', renderAtlas);
+  $('atlas-search').addEventListener('input', () => {
+    $('atlas-detail').hidden = true;
+    renderAtlas();
+  });
+  $('cost-filters').addEventListener('click', event => {
+    const button = event.target.closest('button[data-cost]');
+    if (!button) return;
+    state.atlasCost = button.dataset.cost === 'all' ? null : Number(button.dataset.cost);
+    $('cost-filters').querySelectorAll('button').forEach(filter => {
+      filter.setAttribute('aria-pressed', String(filter === button));
+    });
+    $('atlas-detail').hidden = true;
+    renderAtlas();
+  });
   $('image-input').addEventListener('change', onImageSelected);
   $('preview-image').addEventListener('load', updateDetectedBox);
   window.addEventListener('resize', updateDetectedBox);

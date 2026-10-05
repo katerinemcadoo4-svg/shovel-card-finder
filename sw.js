@@ -1,22 +1,9 @@
-const APP_VERSION = '0.1.1';
+const APP_VERSION = '0.2.0';
 const CACHE_NAME = `shovel-card-${APP_VERSION}`;
 const CORE = [
   './', './index.html', './app.mjs', './styles.css',
   './manifest.webmanifest', './version.json', './data/season.json',
-  './src/catalog.mjs', './src/zip.mjs', './src/recognition.mjs',
-  './src/opencv-loader.mjs', './vendor/opencv-4.8.0.js',
-  './vendor/OPENCV-LICENSE.txt', './vendor/OPENCV-NOTICE.txt',
-  './src/ocr.mjs', './vendor/tesseract/tesseract.esm.min.js',
-  './vendor/tesseract/worker.min.js',
-  './vendor/tesseract/core/tesseract-core-lstm.wasm.js',
-  './vendor/tesseract/core/tesseract-core-simd-lstm.wasm.js',
-  './vendor/tesseract/lang/chi_sim.traineddata.gz',
-  './vendor/tesseract/TESSERACT-JS-LICENSE.md',
-  './vendor/tesseract/TESSERACT-JS-BUNDLE-LICENSE.txt',
-  './vendor/tesseract/WORKER-BUNDLE-LICENSE.txt',
-  './vendor/tesseract/CORE-LICENSE.txt',
-  './vendor/tesseract/LANG-LICENSE.txt',
-  './vendor/tesseract/NOTICE.md',
+  './src/catalog.mjs', './src/zip.mjs', './src/quiz.mjs',
   './assets/icon.svg', './assets/icon-192.png',
   './assets/icon-512.png', './assets/apple-touch-icon.png'
 ];

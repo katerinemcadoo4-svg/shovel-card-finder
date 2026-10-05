@@ -5,31 +5,29 @@ import {
   importAssetPack,
   loadCatalog,
 } from './src/catalog.mjs';
-import { recognizeImage } from './src/recognition.mjs';
-import { applyOcrTieBreak, ocrBoxForTie, recognizeChineseText } from './src/ocr.mjs';
+import { createQuiz, scoreQuiz } from './src/quiz.mjs';
 
 const $ = id => document.getElementById(id);
 const state = {
   catalog: null,
   references: [],
-  imageUrl: null,
   artUrls: new Map(),
   pack: null,
   busy: false,
-  detectedBox: null,
   atlasCost: null,
+  quizPhase: 'ready',
+  quizQuestions: [],
+  quizAnswers: [],
+  quizIndex: 0,
+  quizAnswer: null,
+  quizImageUrl: null,
+  quizImageReady: false,
 };
 
 const statLabels = {
   health: '生命值', hp: '生命值', attackDamage: '攻击力', ad: '攻击力',
   attackSpeed: '攻击速度', armor: '护甲', magicResist: '魔法抗性',
   mana: '法力值', range: '攻击距离', critChance: '暴击率',
-};
-const reasonLabels = {
-  no_references: '还没有参考图。请先导入当前赛季素材包。',
-  no_usable_references: '参考图无法用于识别。请重新导入清晰的素材包。',
-  image_decode_failed: '这张图片无法读取。请换一张 PNG、JPEG、WebP 或 HEIC 图片。',
-  insufficient_evidence: '证据不足。请尝试更清晰、角色图面积更大的图片。',
 };
 
 function node(tag, className, text) {
@@ -42,11 +40,6 @@ function node(tag, className, text) {
 function replaceChildren(element, ...children) {
   element.replaceChildren(...children);
   return element;
-}
-
-function status(message, kind = '') {
-  $('scan-status').className = `inline-status ${kind}`.trim();
-  $('scan-status-text').textContent = message;
 }
 
 function safeHttpUrl(value) {
@@ -255,45 +248,136 @@ function renderLibrary() {
     : '资料待导入';
 }
 
-function renderResult(result) {
-  const section = $('result-section');
-  const list = $('candidate-list');
-  $('detail-panel').hidden = true;
-  section.hidden = false;
-  const isMatch = result.status === 'match';
-  $('result-tag').textContent = isMatch ? '已匹配' : '未确定';
-  $('result-tag').className = `result-tag${isMatch ? ' confident' : ''}`;
-  $('result-note').textContent = isMatch
-    ? result.reason === 'ocr_tiebreak'
-      ? '图像候选接近，画面文字支持首位角色。请核对结果。'
-      : '请核对候选角色；同角色的不同皮肤或未收录画面可能影响结果。'
-    : reasonLabels[result.reason] || '证据不足，请尝试更清晰的角色图。';
-  const rows = (result.matches || []).slice(0, 3).map((match, index) => {
-    const hero = heroById(match.heroId);
-    return hero ? makeHeroRow(hero, { rank: index + 1, onClick: () => renderDetail(hero, 'detail-panel') }) : null;
-  }).filter(Boolean);
-  replaceChildren(list, ...(rows.length ? rows : [node('div', 'empty-note', '没有可靠候选。试试较清晰的单个角色原画或游戏图。')]));
-  state.detectedBox = isMatch ? result.matches?.[0]?.box || null : null;
-  updateDetectedBox();
+function clearQuizImage() {
+  $('quiz-image').removeAttribute('src');
+  if (state.quizImageUrl) URL.revokeObjectURL(state.quizImageUrl);
+  state.quizImageUrl = null;
+  state.quizImageReady = false;
 }
 
-function updateDetectedBox() {
-  const frame = $('scan-preview');
-  const image = $('preview-image');
-  const overlay = $('detected-box');
-  const box = state.detectedBox;
-  if (!box || !image.naturalWidth || !image.naturalHeight || !frame.clientWidth || !frame.clientHeight) {
-    overlay.hidden = true;
+function quizCorrectCount() {
+  return state.quizAnswers.filter(answer => answer.correct).length;
+}
+
+function renderQuizReady() {
+  state.quizPhase = 'ready';
+  state.quizQuestions = [];
+  state.quizAnswers = [];
+  state.quizIndex = 0;
+  state.quizAnswer = null;
+  clearQuizImage();
+  $('quiz-ready').hidden = false;
+  $('quiz-play').hidden = true;
+  $('quiz-complete').hidden = true;
+  $('quiz-review').hidden = true;
+  const heroIds = new Set((state.catalog?.heroes || []).map(hero => hero.id));
+  const count = new Set(state.references.filter(reference => heroIds.has(reference.heroId) && reference.blob?.size > 0).map(reference => reference.heroId)).size;
+  const ready = count >= 2;
+  $('start-quiz').disabled = !ready;
+  $('quiz-import').hidden = ready;
+  $('quiz-ready-note').textContent = ready
+    ? `已准备 ${count} 名角色的图片。${count < 20 ? '本套会轮换已导入的角色。' : '每套随机抽取 20 名角色。'}`
+    : '先到“资料”导入至少两名角色的图片，再开始练习。';
+}
+
+function startQuiz() {
+  if (state.busy) return;
+  const questions = createQuiz(state.catalog, state.references);
+  if (!questions.length) {
+    $('quiz-ready-note').textContent = '可用角色图片不足，请到“资料”导入完整素材包。';
+    $('quiz-import').hidden = false;
     return;
   }
-  const scale = Math.min(frame.clientWidth / image.naturalWidth, frame.clientHeight / image.naturalHeight);
-  const offsetX = (frame.clientWidth - image.naturalWidth * scale) / 2;
-  const offsetY = (frame.clientHeight - image.naturalHeight * scale) / 2;
-  overlay.style.left = `${offsetX + box.x * scale}px`;
-  overlay.style.top = `${offsetY + box.y * scale}px`;
-  overlay.style.width = `${box.width * scale}px`;
-  overlay.style.height = `${box.height * scale}px`;
-  overlay.hidden = false;
+  state.quizQuestions = questions;
+  state.quizAnswers = [];
+  state.quizIndex = 0;
+  state.quizPhase = 'playing';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  clearQuizImage();
+  state.quizAnswer = null;
+  const question = state.quizQuestions[state.quizIndex];
+  $('quiz-ready').hidden = true;
+  $('quiz-complete').hidden = true;
+  $('quiz-review').hidden = true;
+  $('quiz-play').hidden = false;
+  $('question-title').textContent = `第 ${state.quizIndex + 1} / 20 题`;
+  $('quiz-live-score').textContent = `已得 ${scoreQuiz(quizCorrectCount()).score} 分`;
+  $('quiz-progress').value = state.quizAnswers.length;
+  $('quiz-feedback').hidden = true;
+  $('quiz-feedback').textContent = '';
+  $('next-question').hidden = true;
+  $('quiz-image-error').hidden = true;
+  $('quiz-image').hidden = false;
+  $('quiz-image').alt = `第 ${state.quizIndex + 1} 题角色图片`;
+  replaceChildren($('quiz-options'), ...question.options.map((option, i) => {
+    const button = node('button', 'quiz-option');
+    button.type = 'button';
+    button.dataset.heroId = option.heroId;
+    button.disabled = true;
+    button.append(node('span', 'option-letter', String.fromCharCode(65 + i)), node('span', 'option-name', option.name), node('span', 'option-mark'));
+    button.addEventListener('click', () => answerQuestion(option.heroId));
+    return button;
+  }));
+  state.quizImageUrl = URL.createObjectURL(question.reference.blob);
+  $('quiz-image').src = state.quizImageUrl;
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  $('question-title').focus({ preventScroll: true });
+}
+
+function answerQuestion(selectedHeroId) {
+  if (state.quizPhase !== 'playing' || state.quizAnswer !== null || !state.quizImageReady) return;
+  const question = state.quizQuestions[state.quizIndex];
+  const correct = selectedHeroId === question.heroId;
+  state.quizAnswer = selectedHeroId;
+  state.quizAnswers.push({ heroId: question.heroId, selectedHeroId, correct });
+  for (const button of $('quiz-options').children) {
+    button.disabled = true;
+    const mark = button.querySelector('.option-mark');
+    if (button.dataset.heroId === question.heroId) {
+      button.classList.add('is-correct');
+      mark.textContent = correct ? '✓ 正确' : '✓ 正确答案';
+    } else if (button.dataset.heroId === selectedHeroId) {
+      button.classList.add('is-wrong');
+      mark.textContent = '✕ 你选的';
+    }
+  }
+  const name = heroById(question.heroId)?.name || '该角色';
+  $('quiz-feedback').className = `quiz-feedback ${correct ? 'feedback-correct' : 'feedback-wrong'}`;
+  $('quiz-feedback').textContent = correct ? `答对了！这是${name}，获得 5 分。` : `答错了，正确答案是${name}。`;
+  $('quiz-feedback').hidden = false;
+  $('quiz-live-score').textContent = `已得 ${scoreQuiz(quizCorrectCount()).score} 分`;
+  $('quiz-progress').value = state.quizAnswers.length;
+  $('next-question').textContent = state.quizIndex === 19 ? '查看成绩' : '下一题';
+  $('next-question').hidden = false;
+  $('next-question').focus({ preventScroll: true });
+  $('next-question').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function showQuizResult() {
+  clearQuizImage();
+  state.quizPhase = 'complete';
+  $('quiz-play').hidden = true;
+  $('quiz-complete').hidden = false;
+  const result = scoreQuiz(quizCorrectCount());
+  $('quiz-final-score').textContent = result.score;
+  $('quiz-score-summary').textContent = `答对 ${result.correctCount} / 20 题 · 正确率 ${result.correctCount * 5}% · 答错 ${20 - result.correctCount} 题`;
+  const wrong = state.quizAnswers.filter(answer => !answer.correct);
+  $('quiz-review').hidden = !wrong.length;
+  replaceChildren($('quiz-wrong-list'), ...wrong.map(answer => {
+    const hero = heroById(answer.heroId);
+    const row = node('button', 'hero-row');
+    row.type = 'button';
+    const body = node('span', 'hero-row-body');
+    body.append(node('span', 'hero-row-name', hero.name), node('span', 'hero-row-meta', `你选了：${heroById(answer.selectedHeroId)?.name || '其他角色'}`));
+    row.append(thumb(hero), body, node('span', 'hero-cost', '正确答案'));
+    row.addEventListener('click', () => { navigate('atlas-view'); renderDetail(hero, 'atlas-detail'); });
+    return row;
+  }));
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  $('quiz-complete-title').focus({ preventScroll: true });
 }
 
 async function refreshCatalog() {
@@ -303,89 +387,15 @@ async function refreshCatalog() {
   state.references = await getReferences(state.catalog);
   renderLibrary();
   renderAtlas();
-  $('detail-panel').hidden = true;
   $('atlas-detail').hidden = true;
-  $('result-section').hidden = true;
-  if (state.references.length) status(`已准备 ${state.references.length} 张本地参考图。请选择一张角色图片。`, 'success');
-  else if (state.pack?.installed && state.pack.catalog?.patch !== state.catalog?.patch) {
-    status(`素材包属于旧版 ${state.pack.catalog?.patch}，请导入 ${state.catalog?.patch} 版本素材包。`, 'error');
-  } else status('先导入包含当前赛季角色与参考图的素材包，即可开始识别。');
-}
-
-async function onImageSelected(event) {
-  const file = event.target.files?.[0];
-  if (!file) return;
-  if (state.busy) {
-    status('正在识别上一张图片，请稍候。', 'busy');
-    event.target.value = '';
-    return;
-  }
-  if (!['image/png', 'image/jpeg', 'image/webp', 'image/heic', 'image/heif'].includes(file.type) ||
-      file.size > 25 * 1024 * 1024) {
-    status('请选择不超过 25 MB 的 PNG、JPEG、WebP 或 HEIC 图片。', 'error');
-    event.target.value = '';
-    return;
-  }
-  if (state.imageUrl) URL.revokeObjectURL(state.imageUrl);
-  state.imageUrl = URL.createObjectURL(file);
-  $('preview-image').src = state.imageUrl;
-  $('scan-preview').hidden = false;
-  $('scan-art').hidden = true;
-  $('result-section').hidden = true;
-  $('detail-panel').hidden = true;
-  state.detectedBox = null;
-  updateDetectedBox();
-  if (!state.references.length) {
-    status('尚无可用参考图。请到“资料”导入当前赛季素材包。', 'error');
-    event.target.value = '';
-    return;
-  }
-  state.busy = true;
-  status('正在本机分析图片…', 'busy');
-  const startedAt = performance.now();
-  try {
-    let result = await recognizeImage(file, state.references, {
-      onProgress({ phase, done, total }) {
-        if (phase === 'references' && (done === total || done % 8 === 0)) {
-          status(`正在准备本地参考图 ${done}/${total}…`, 'busy');
-        } else if (phase === 'coarse') {
-          status(`正在定位画面 ${done}/${total}…`, 'busy');
-        } else if (phase === 'orb' && (done === total || done % 4 === 0)) {
-          status(`正在核对图像特征 ${done}/${total}…`, 'busy');
-        }
-      },
-    });
-    const ocrBox = ocrBoxForTie(result);
-    if (ocrBox) {
-      status('图像候选接近，正在本机读取画面文字…', 'busy');
-      const ocr = await recognizeChineseText(file, { box: ocrBox, timeoutMs: 12000 });
-      result = applyOcrTieBreak(result, state.catalog?.heroes || [], ocr);
-      result = { ...result, diagnostics: {
-        ...result.diagnostics,
-        ocrStatus: ocr.status,
-        ocrMs: ocr.elapsedMs,
-        ocrConfidence: ocr.confidence,
-      } };
-    }
-    if (result.diagnostics) console.info(`Recognition diagnostics ${JSON.stringify(result.diagnostics)}`);
-    renderResult(result);
-    const elapsed = Math.round(performance.now() - startedAt);
-    const timing = Number.isFinite(elapsed) ? `（${(elapsed / 1000).toFixed(1)} 秒）` : '';
-    status(result.status === 'match' ? `识别完成${timing}。请核对结果。` : `识别完成${timing}，但暂不能确定角色。`, result.status === 'match' ? 'success' : '');
-  } catch (error) {
-    console.error('Recognition failed', error);
-    status(`识别失败：${error.message || '请换一张图片重试。'}`, 'error');
-  } finally {
-    state.busy = false;
-    event.target.value = '';
-  }
+  renderQuizReady();
 }
 
 async function onPackSelected(event) {
   const file = event.target.files?.[0];
   if (!file) return;
   if (state.busy) {
-    $('pack-status').textContent = '正在识别图片，请完成后再导入素材包。';
+    $('pack-status').textContent = '素材包正在处理，请稍候再导入。';
     event.target.value = '';
     return;
   }
@@ -395,7 +405,7 @@ async function onPackSelected(event) {
     await importAssetPack(file, { catalog: state.catalog });
     await refreshCatalog();
     $('pack-status').textContent = `已导入：${file.name} · ${state.references.length} 张参考图`;
-    navigate('atlas-view');
+    navigate('quiz-view');
   } catch (error) {
     console.error('Asset pack import failed', error);
     $('pack-status').textContent = `导入失败：${error.message || '素材包无效'}`;
@@ -460,13 +470,31 @@ async function init() {
     $('atlas-detail').hidden = true;
     renderAtlas();
   });
-  $('image-input').addEventListener('change', onImageSelected);
-  $('preview-image').addEventListener('load', updateDetectedBox);
-  window.addEventListener('resize', updateDetectedBox);
+  $('start-quiz').addEventListener('click', startQuiz);
+  $('restart-quiz').addEventListener('click', startQuiz);
+  $('quiz-import').addEventListener('click', () => navigate('library-view'));
+  $('quiz-atlas').addEventListener('click', () => navigate('atlas-view'));
+  $('next-question').addEventListener('click', () => {
+    if (state.quizAnswer === null || state.quizPhase !== 'playing') return;
+    if (state.quizIndex === 19) showQuizResult();
+    else { state.quizIndex++; renderQuestion(); }
+  });
+  $('quiz-image').addEventListener('load', () => {
+    if (state.quizPhase !== 'playing' || !$('quiz-image').naturalWidth) return;
+    state.quizImageReady = true;
+    if (state.quizAnswer === null) for (const button of $('quiz-options').children) button.disabled = false;
+  });
+  $('quiz-image').addEventListener('error', () => {
+    if (state.quizPhase !== 'playing') return;
+    state.quizImageReady = false;
+    $('quiz-image').hidden = true;
+    $('quiz-image-error').hidden = false;
+    for (const button of $('quiz-options').children) button.disabled = true;
+  });
   $('pack-input').addEventListener('change', onPackSelected);
   $('clear-pack').addEventListener('click', async () => {
     if (state.busy) {
-      $('pack-status').textContent = '正在识别图片，请完成后再移除素材包。';
+      $('pack-status').textContent = '素材包正在处理，请稍候再移除。';
       return;
     }
     state.busy = true;
@@ -484,7 +512,8 @@ async function init() {
     await refreshCatalog();
   } catch (error) {
     console.error('Catalog unavailable', error);
-    status('资料读取失败。请检查网络或重新导入素材包。', 'error');
+    $('quiz-ready-note').textContent = '资料读取失败。请检查网络或到“资料”重新导入素材包。';
+    $('quiz-import').hidden = false;
     $('atlas-meta').textContent = '资料读取失败';
   }
   await registerUpdates();

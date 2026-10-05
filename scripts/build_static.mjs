@@ -12,22 +12,9 @@ if (output !== join(root, 'dist') || !output.startsWith(root + sep)) {
 const sources = [
   'index.html', 'app.mjs', 'styles.css',
   'manifest.webmanifest', 'version.json', 'sw.js', 'data/season.json',
-  'src/catalog.mjs', 'src/zip.mjs', 'src/recognition.mjs', 'src/opencv-loader.mjs',
-  'src/ocr.mjs',
+  'src/catalog.mjs', 'src/zip.mjs', 'src/quiz.mjs',
   'assets/icon.svg', 'assets/icon-192.png', 'assets/icon-512.png',
-  'assets/apple-touch-icon.png', 'vendor/opencv-4.8.0.js',
-  'vendor/OPENCV-LICENSE.txt', 'vendor/OPENCV-NOTICE.txt',
-  'vendor/tesseract/tesseract.esm.min.js',
-  'vendor/tesseract/worker.min.js',
-  'vendor/tesseract/core/tesseract-core-lstm.wasm.js',
-  'vendor/tesseract/core/tesseract-core-simd-lstm.wasm.js',
-  'vendor/tesseract/lang/chi_sim.traineddata.gz',
-  'vendor/tesseract/TESSERACT-JS-LICENSE.md',
-  'vendor/tesseract/TESSERACT-JS-BUNDLE-LICENSE.txt',
-  'vendor/tesseract/WORKER-BUNDLE-LICENSE.txt',
-  'vendor/tesseract/CORE-LICENSE.txt',
-  'vendor/tesseract/LANG-LICENSE.txt',
-  'vendor/tesseract/NOTICE.md',
+  'assets/apple-touch-icon.png',
 ];
 
 await rm(output, { recursive: true, force: true });

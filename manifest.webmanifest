@@ -1,7 +1,7 @@
 {
-  "name": "铲牌识别 · 金铲铲角色图鉴",
-  "short_name": "铲牌识别",
-  "description": "本地识别金铲铲角色牌与原画",
+  "name": "铲牌练习 · 金铲铲角色图鉴",
+  "short_name": "铲牌练习",
+  "description": "看图选择角色，每套 20 题，答完查看分数与错题",
   "lang": "zh-CN",
   "start_url": "./",
   "scope": "./",

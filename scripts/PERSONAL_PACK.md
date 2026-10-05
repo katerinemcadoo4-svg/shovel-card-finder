@@ -10,4 +10,4 @@ node scripts/make_personal_s19_pack.mjs --output local-packs/jcc-s19-18.18.3-per
 
 `local-packs/` 已被 `.gitignore` 忽略，静态构建也不会复制该目录。也可以把 `--output` 设为项目目录外的 Downloads 路径；脚本会拒绝 `assets/`、`dist/` 和其他公开目录。默认不覆盖已有 ZIP，确实需要替换同一路径时追加 `--overwrite`。它会在下载前核对官方当前赛季、最新补丁、角色数量及 ID 与本地目录的一致性；如果本地 `data/season.json` 已过期，会停止并提示当前补丁。下载后会检查官方地址、图片格式与大小，并用应用自身的 ZIP 导入器校验成品。
 
-把生成的 ZIP 通过隔空投送或“文件”传到 iPhone，再从应用的素材包入口选择它。ZIP 内 `manifest.json` 保留每张图片的官方 URL 和 SHA-256，便于核对来源。官方头像不一定与游戏截图中的整张卡面完全一致；实际识别效果仍需用独立截图和 iPhone 测量。
+把生成的 ZIP 私下传到 iPhone 的“文件”，再从应用“资料”页的素材包入口选择它。ZIP 内 `manifest.json` 保留每张图片的官方 URL 和 SHA-256，便于核对来源。导入后首页会用角色图片生成每套 20 道选择题，图鉴也会显示对应头像。

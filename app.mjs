@@ -8,6 +8,8 @@ import {
 import { createQuiz, scoreQuiz } from './src/quiz.mjs';
 import { loadLineups } from './src/lineups.mjs';
 import { layoutFormation } from './src/formation.mjs';
+import { createQuizRecord, readQuizHistory, saveQuizRecord, getHistorySummary, QUIZ_HISTORY_STORAGE_KEY } from './src/history.mjs';
+import { selectHeroLineups } from './src/lineup-selection.mjs';
 
 const $ = id => document.getElementById(id);
 const state = {
@@ -19,7 +21,10 @@ const state = {
   atlasCost: null,
   lineupCatalog: null,
   lineupStatus: 'loading',
-  lineupQuality: 'S',
+  lineupQuality: null,
+  lineupCost: 1,
+  lineupHeroId: null,
+  lineupBrowseAll: false,
   quizPhase: 'ready',
   quizQuestions: [],
   quizAnswers: [],
@@ -27,6 +32,9 @@ const state = {
   quizAnswer: null,
   quizImageUrl: null,
   quizImageReady: false,
+  quizRunId: null,
+  quizHistory: [],
+  historyPending: new Map(),
 };
 
 const statLabels = {
@@ -269,9 +277,54 @@ function renderFormation(lineup) {
   return figure;
 }
 
+function renderLineupPicker() {
+  const search = $('lineup-search').value.trim().toLowerCase();
+  const heroes = (state.catalog?.heroes || []).filter(hero => hero.cost === state.lineupCost &&
+    [hero.name, ...(hero.traits || [])].join(' ').toLowerCase().includes(search));
+  $('lineup-picker-title').textContent = `${state.lineupCost} 费角色`;
+  $('lineup-hero-count').textContent = `${heroes.length} 名`;
+  $('lineup-avatar-note').textContent = state.references.length
+    ? '点击角色头像，查看相关阵容。主 C 阵容优先显示。'
+    : '导入角色素材后可显示头像；现在也可点击角色名称查看阵容。';
+  const grid = $('lineup-heroes');
+  if (!heroes.length) {
+    replaceChildren(grid, node('p', 'empty-note', `当前 ${state.lineupCost} 费没有匹配角色，试试其他费用或名字。`));
+    return;
+  }
+  replaceChildren(grid, ...heroes.map(hero => {
+    const button = node('button', `lineup-hero-choice lineup-hero-cost-${hero.cost}`);
+    button.type = 'button';
+    button.dataset.heroId = hero.id;
+    button.setAttribute('aria-label', `查看${hero.name}的阵容推荐`);
+    button.setAttribute('aria-pressed', String(state.lineupHeroId === hero.id));
+    const portrait = thumb(hero, 'lineup-choice-portrait');
+    if (!portrait.querySelector('img')) portrait.textContent = hero.name.slice(0, 1);
+    button.append(portrait, node('span', 'lineup-choice-name', hero.name));
+    const count = state.lineupCatalog ? selectHeroLineups(state.lineupCatalog.lineups, hero).length : null;
+    button.append(node('span', 'lineup-choice-count', count === null ? '资料准备中' : `${count} 套阵容`));
+    button.addEventListener('click', () => {
+      state.lineupHeroId = hero.id;
+      state.lineupBrowseAll = false;
+      state.lineupQuality = null;
+      renderLineupPicker();
+      renderLineups();
+      $('lineup-recommendation-title').focus({ preventScroll: true });
+      $('lineup-recommendations').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return button;
+  }));
+}
+
 function renderLineups() {
   const data = state.lineupCatalog;
   const list = $('lineup-list');
+  const hero = heroById(state.lineupHeroId);
+  $('lineup-recommendation-title').textContent = hero ? `${hero.name}的阵容推荐` : state.lineupBrowseAll ? '全部热门阵容' : '选角色，看阵容';
+  $('lineup-change-hero').hidden = !hero && !state.lineupBrowseAll;
+  $('lineup-filters').hidden = !hero && !state.lineupBrowseAll;
+  $('lineup-filters').querySelectorAll('button').forEach(button => {
+    button.setAttribute('aria-pressed', String(button.dataset.quality === (state.lineupQuality || 'all')));
+  });
   if (!data) {
     const loading = state.lineupStatus === 'loading';
     $('lineup-meta').textContent = loading ? '正在准备阵容资料…' : '阵容资料暂不可用';
@@ -279,15 +332,16 @@ function renderLineups() {
     replaceChildren(list, node('p', 'empty-note', loading ? '正在读取官方阵容资料…' : '未能读取与当前赛季版本一致的阵容资料，请联网更新后重试。'));
     return;
   }
-  const search = $('lineup-search').value.trim().toLowerCase();
-  const filtered = data.lineups.filter(lineup => {
-    const names = [lineup.name, ...lineup.members.flatMap(member => [member.name, ...(heroById(member.heroId)?.traits || [])])].join(' ').toLowerCase();
-    return (state.lineupQuality === null || lineup.quality === state.lineupQuality) && names.includes(search);
-  });
   $('lineup-version').textContent = `${data.seasonName} · ${data.patch} · 核验于 ${data.updatedAt}`;
-  $('lineup-meta').textContent = `${state.lineupQuality ? `官方 ${state.lineupQuality} 级` : '全部推荐'} · ${filtered.length} 套阵容`;
+  if (!hero && !state.lineupBrowseAll) {
+    $('lineup-meta').textContent = `${state.catalog.heroes.length} 名角色 · ${data.lineups.length} 套官方阵容`;
+    replaceChildren(list, node('p', 'empty-note', '选择上方的角色头像，查看它的推荐阵容、棋盘站位和装备。'));
+    return;
+  }
+  const filtered = selectHeroLineups(data.lineups, hero).filter(lineup => state.lineupQuality === null || lineup.quality === state.lineupQuality);
+  $('lineup-meta').textContent = `${state.lineupQuality ? `官方 ${state.lineupQuality} 级` : '全部等级'} · ${filtered.length} 套阵容${hero ? ' · 主 C 优先' : ''}`;
   if (!filtered.length) {
-    replaceChildren(list, node('p', 'empty-note', '没有找到符合条件的阵容，试试其他角色或羁绊。'));
+    replaceChildren(list, node('p', 'empty-note', '当前等级没有该角色的推荐，点击“全部”查看其他等级。'));
     return;
   }
   replaceChildren(list, ...filtered.map((lineup, index) => {
@@ -378,6 +432,88 @@ function quizCorrectCount() {
   return state.quizAnswers.filter(answer => answer.correct).length;
 }
 
+function mergeHistoryRecords(...groups) {
+  const records = new Map(groups.flat().map(record => [record.id, record]));
+  return [...records.values()].sort((a, b) => a.completedAt.localeCompare(b.completedAt) || a.id.localeCompare(b.id));
+}
+
+function svgNode(tag, attributes, text) {
+  const element = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [key, value] of Object.entries(attributes)) element.setAttribute(key, value);
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function historyChart(records) {
+  const recent = records.slice(-10);
+  const chart = svgNode('svg', { viewBox: '0 0 360 174', role: 'img', 'aria-label': recent.length
+    ? `最近 ${recent.length} 套答题胜率：${recent.map(record => `${record.winRate}%`).join('、')}`
+    : '答题胜率趋势图，尚无完成记录' });
+  const left = 34, right = 342, top = 18, bottom = 144;
+  for (const rate of [0, 50, 100]) {
+    const y = bottom - (bottom - top) * rate / 100;
+    chart.append(svgNode('line', { x1: left, y1: y, x2: right, y2: y, class: 'history-gridline' }));
+    chart.append(svgNode('text', { x: left - 7, y: y + 3, 'text-anchor': 'end', class: 'history-axis' }, `${rate}%`));
+  }
+  const points = recent.map((record, i) => ({ record,
+    x: recent.length === 1 ? (left + right) / 2 : left + i * (right - left) / (recent.length - 1),
+    y: bottom - record.winRate / 100 * (bottom - top),
+  }));
+  if (points.length > 1) {
+    chart.append(svgNode('path', { d: `M ${points[0].x} ${bottom} ${points.map(point => `L ${point.x} ${point.y}`).join(' ')} L ${points.at(-1).x} ${bottom} Z`, class: 'history-area' }));
+    chart.append(svgNode('polyline', { points: points.map(point => `${point.x},${point.y}`).join(' '), class: 'history-line' }));
+  }
+  for (const [i, point] of points.entries()) {
+    const dot = svgNode('circle', { cx: point.x, cy: point.y, r: '4', class: 'history-dot' });
+    dot.append(svgNode('title', {}, `${formatHistoryDate(point.record.completedAt)} · ${point.record.winRate}% · ${point.record.score} 分`));
+    chart.append(dot, svgNode('text', { x: point.x, y: bottom + 19, 'text-anchor': 'middle', class: 'history-axis' }, records.length - recent.length + i + 1));
+  }
+  return chart;
+}
+
+function formatHistoryDate(value) {
+  return new Intl.DateTimeFormat('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(value));
+}
+
+function renderQuizHistory() {
+  $('quiz-history').hidden = state.quizPhase === 'playing';
+  const summary = getHistorySummary(state.quizHistory);
+  $('history-win-rate').textContent = summary.completedSets ? `${Math.round(summary.winRate)}%` : '—';
+  $('history-set-count').textContent = summary.completedSets;
+  $('history-best-score').textContent = summary.completedSets ? summary.bestScore : '—';
+  $('history-count-note').textContent = summary.completedSets
+    ? `累计答对 ${summary.totalCorrect} / ${summary.totalQuestions} 题 · 胜率按已完成的套题计算`
+    : '完成一套 20 题后，成绩和胜率会自动记录在这里。';
+  $('history-save-warning').hidden = !state.historyPending.size;
+  replaceChildren($('history-chart'), historyChart(state.quizHistory));
+  $('history-chart-empty').hidden = Boolean(summary.completedSets);
+  const recent = state.quizHistory.slice(-10).reverse();
+  $('history-records').hidden = !recent.length;
+  replaceChildren($('history-record-list'), ...recent.map(record => {
+    const row = node('li');
+    const date = node('time', '', formatHistoryDate(record.completedAt));
+    date.dateTime = record.completedAt;
+    const meta = node('span', 'history-record-meta', `${record.score} 分 · ${record.correctCount}/20 题 · ${record.patch}`);
+    const label = node('span');
+    label.append(date, meta);
+    row.append(label, node('strong', '', `${record.winRate}%`));
+    return row;
+  }));
+}
+
+function saveCompletedQuiz() {
+  const record = createQuizRecord({ id: state.quizRunId, completedAt: new Date().toISOString(),
+    seasonId: state.catalog.seasonId, patch: state.catalog.patch, correctCount: quizCorrectCount() });
+  state.historyPending.set(record.id, record);
+  // Retry earlier unsaved sets, so a temporary storage failure cannot erase them.
+  for (const [id, pending] of state.historyPending) {
+    const saved = saveQuizRecord(pending);
+    state.quizHistory = mergeHistoryRecords(state.quizHistory, saved.records);
+    if (saved.persisted) state.historyPending.delete(id);
+  }
+  renderQuizHistory();
+}
+
 function renderQuizStats() {
   const answered = state.quizAnswers.length;
   const correct = quizCorrectCount();
@@ -396,6 +532,7 @@ function renderQuizReady() {
   state.quizIndex = 0;
   state.quizAnswer = null;
   renderQuizStats();
+  renderQuizHistory();
   clearQuizImage();
   $('quiz-ready').hidden = false;
   $('quiz-play').hidden = true;
@@ -423,6 +560,8 @@ function startQuiz() {
   state.quizAnswers = [];
   state.quizIndex = 0;
   state.quizPhase = 'playing';
+  state.quizRunId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  $('quiz-history').hidden = true;
   renderQuestion();
 }
 
@@ -501,6 +640,7 @@ function advanceQuestion() {
 }
 
 function showQuizResult() {
+  if (state.quizPhase !== 'playing' || state.quizAnswers.length !== 20) return;
   clearQuizImage();
   state.quizPhase = 'complete';
   $('quiz-play').hidden = true;
@@ -508,6 +648,7 @@ function showQuizResult() {
   const result = scoreQuiz(quizCorrectCount());
   $('quiz-final-score').textContent = result.score;
   $('quiz-score-summary').textContent = `答对 ${result.correctCount} / 20 题 · 答题胜率 ${result.correctCount * 5}% · 答错 ${20 - result.correctCount} 题`;
+  saveCompletedQuiz();
   const wrong = state.quizAnswers.filter(answer => !answer.correct);
   $('quiz-review').hidden = !wrong.length;
   replaceChildren($('quiz-wrong-list'), ...wrong.map(answer => {
@@ -527,6 +668,7 @@ function showQuizResult() {
 async function refreshLineups(catalog) {
   state.lineupCatalog = null;
   state.lineupStatus = 'loading';
+  renderLineupPicker();
   renderLineups();
   try {
     const lineups = await loadLineups(catalog);
@@ -538,6 +680,7 @@ async function refreshLineups(catalog) {
     state.lineupStatus = 'failed';
     console.warn('Lineups unavailable', error);
   }
+  renderLineupPicker();
   renderLineups();
 }
 
@@ -548,6 +691,8 @@ async function refreshCatalog() {
   state.references = await getReferences(state.catalog);
   renderLibrary();
   renderAtlas();
+  if (!heroById(state.lineupHeroId)) state.lineupHeroId = null;
+  renderLineupPicker();
   $('atlas-detail').hidden = true;
   renderQuizReady();
   // The independent guide download must never delay quiz or asset-pack setup.
@@ -618,6 +763,14 @@ async function registerUpdates() {
 }
 
 async function init() {
+  state.quizHistory = readQuizHistory();
+  renderQuizHistory();
+  window.addEventListener('storage', event => {
+    if (event.key === QUIZ_HISTORY_STORAGE_KEY) {
+      state.quizHistory = mergeHistoryRecords(readQuizHistory(), [...state.historyPending.values()]);
+      renderQuizHistory();
+    }
+  });
   document.querySelectorAll('.nav-item').forEach(button => button.addEventListener('click', () => navigate(button.dataset.view)));
   $('atlas-search').addEventListener('input', () => {
     $('atlas-detail').hidden = true;
@@ -638,7 +791,35 @@ async function init() {
   $('quiz-import').addEventListener('click', () => navigate('library-view'));
   $('quiz-atlas').addEventListener('click', () => navigate('atlas-view'));
   $('quiz-lineups').addEventListener('click', () => navigate('lineups-view'));
-  $('lineup-search').addEventListener('input', renderLineups);
+  $('lineup-search').addEventListener('input', () => {
+    state.lineupHeroId = null;
+    state.lineupBrowseAll = false;
+    renderLineupPicker();
+    renderLineups();
+  });
+  $('lineup-cost-filters').addEventListener('click', event => {
+    const button = event.target.closest('button[data-cost]');
+    if (!button) return;
+    state.lineupCost = Number(button.dataset.cost);
+    state.lineupHeroId = null;
+    state.lineupBrowseAll = false;
+    state.lineupQuality = null;
+    $('lineup-cost-filters').querySelectorAll('button').forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
+    renderLineupPicker();
+    renderLineups();
+  });
+  $('lineup-all').addEventListener('click', () => {
+    state.lineupHeroId = null;
+    state.lineupBrowseAll = true;
+    state.lineupQuality = null;
+    renderLineupPicker();
+    renderLineups();
+    $('lineup-recommendations').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  $('lineup-change-hero').addEventListener('click', () => {
+    $('lineup-picker-title').focus({ preventScroll: true });
+    $('lineup-picker').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
   $('lineup-filters').addEventListener('click', event => {
     const button = event.target.closest('button[data-quality]');
     if (!button) return;

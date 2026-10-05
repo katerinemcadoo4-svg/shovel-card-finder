@@ -72,6 +72,20 @@
             <button type="button" class="primary-button" id="restart-quiz">再做一套</button>
             <button type="button" class="secondary-button" id="quiz-atlas">去图鉴复习</button>
           </section>
+          <section class="quiz-history info-card" id="quiz-history" aria-labelledby="history-title">
+            <div class="history-heading"><h2 id="history-title">答题记录</h2><span>仅保存在本机</span></div>
+            <div class="history-stats">
+              <div><strong id="history-win-rate">—</strong><span>累计答题胜率</span></div>
+              <div><strong id="history-set-count">0</strong><span>完成套数</span></div>
+              <div><strong id="history-best-score">—</strong><span>最高分</span></div>
+            </div>
+            <p class="micro-copy" id="history-count-note"></p>
+            <div class="history-chart-heading"><h3>胜率趋势</h3><span>最近 10 套 · 横轴为套题序号</span></div>
+            <div class="history-chart" id="history-chart"></div>
+            <p class="micro-copy" id="history-chart-empty">还没有完成记录，答完第一套即可看到趋势。</p>
+            <p class="history-warning" id="history-save-warning" role="status" hidden>本机暂时无法保存，未保存的成绩仅在本次打开期间可见。</p>
+            <details class="history-records" id="history-records" hidden><summary>查看最近成绩</summary><ol id="history-record-list"></ol></details>
+          </section>
           <section class="quiz-review" id="quiz-review" hidden aria-labelledby="quiz-review-title"><h2 id="quiz-review-title">错题回顾</h2><div class="hero-list" id="quiz-wrong-list"></div></section>
         </section>
 
@@ -102,20 +116,36 @@
           <div class="page-heading">
             <p class="eyebrow">阵容攻略</p>
             <h1 id="lineups-title">热门阵容推荐</h1>
-            <p class="heading-copy">官方 S / A 级精选，查看阵容成员、推荐装备和运营建议。按官方等级排序。</p>
+            <p class="heading-copy">按 1～5 费选择角色，点击头像查看阵容推荐、棋盘站位和装备。该角色的主 C 阵容优先显示。</p>
             <p class="micro-copy" id="lineup-version"></p>
           </div>
           <label class="search-field" for="lineup-search">
             <span aria-hidden="true">⌕</span>
-            <input id="lineup-search" type="search" aria-label="搜索阵容、角色或羁绊" placeholder="搜索阵容、角色或羁绊" autocomplete="off" />
+            <input id="lineup-search" type="search" aria-label="搜索当前费用的角色或羁绊" placeholder="搜索角色或羁绊" autocomplete="off" />
           </label>
-          <div class="lineup-filters" id="lineup-filters" role="group" aria-label="按官方推荐等级筛选">
-            <button type="button" class="cost-filter" data-quality="S" aria-pressed="true">S 级推荐</button>
-            <button type="button" class="cost-filter" data-quality="A" aria-pressed="false">A 级推荐</button>
-            <button type="button" class="cost-filter" data-quality="all" aria-pressed="false">全部</button>
+          <div class="lineup-cost-filters" id="lineup-cost-filters" role="group" aria-label="按角色费用选择阵容">
+            <button type="button" class="cost-filter" data-cost="1" aria-pressed="true">1 费</button>
+            <button type="button" class="cost-filter" data-cost="2" aria-pressed="false">2 费</button>
+            <button type="button" class="cost-filter" data-cost="3" aria-pressed="false">3 费</button>
+            <button type="button" class="cost-filter" data-cost="4" aria-pressed="false">4 费</button>
+            <button type="button" class="cost-filter" data-cost="5" aria-pressed="false">5 费</button>
           </div>
-          <p class="atlas-meta" id="lineup-meta" role="status" aria-live="polite">正在准备阵容资料…</p>
-          <div class="lineup-list" id="lineup-list"></div>
+          <section class="lineup-picker" id="lineup-picker" aria-labelledby="lineup-picker-title">
+            <div class="cost-group-heading"><h2 id="lineup-picker-title" tabindex="-1">1 费角色</h2><span class="cost-group-count" id="lineup-hero-count"></span></div>
+            <div class="lineup-hero-grid" id="lineup-heroes"></div>
+            <p class="micro-copy" id="lineup-avatar-note"></p>
+            <button type="button" class="text-link" id="lineup-all">查看全部热门阵容 →</button>
+          </section>
+          <section class="lineup-recommendations" id="lineup-recommendations" aria-labelledby="lineup-recommendation-title">
+            <div class="lineup-recommendation-heading"><h2 id="lineup-recommendation-title" tabindex="-1">选角色，看阵容</h2><button type="button" class="text-link" id="lineup-change-hero" hidden>换个角色 ↑</button></div>
+            <div class="lineup-filters" id="lineup-filters" hidden role="group" aria-label="按官方推荐等级筛选">
+              <button type="button" class="cost-filter" data-quality="all" aria-pressed="true">全部</button>
+              <button type="button" class="cost-filter" data-quality="S" aria-pressed="false">S 级推荐</button>
+              <button type="button" class="cost-filter" data-quality="A" aria-pressed="false">A 级推荐</button>
+            </div>
+            <p class="atlas-meta" id="lineup-meta" role="status" aria-live="polite">正在准备阵容资料…</p>
+            <div class="lineup-list" id="lineup-list"></div>
+          </section>
         </section>
 
         <section class="view" id="library-view" hidden aria-labelledby="library-title">
